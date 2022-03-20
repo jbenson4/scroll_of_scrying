@@ -1,9 +1,11 @@
-import './App.css';
+import React from 'react';
+import './App.scss';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <h1>Scroll of Scrying</h1>
+      <Navbar />
     </div>
   );
 }
