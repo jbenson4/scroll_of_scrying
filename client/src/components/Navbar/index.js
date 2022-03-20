@@ -4,7 +4,7 @@ import './Navbar.scss';
 const Navbar = () => {
   return (
     <div class="navbar">
-      <h1><img src="/images/scry-icon.svg" alt="logo" id="logo_img"/> <br/> Scroll of Scrying</h1>
+      <span id="party-name">Company of the Yellow Banner</span>
       <nav>
         <ul>
           <li><button>Party</button></li>
@@ -18,3 +18,4 @@ const Navbar = () => {
 }
 
 export default Navbar;
+

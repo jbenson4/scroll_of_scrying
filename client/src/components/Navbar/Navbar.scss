@@ -1,41 +1,36 @@
 
-div.navbar {
+.navbar {
+  width: 100vw;
+  font-size: 20px;
+  background-color: #2f2f2f;
+  color: #E8DCB8;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
-  margin: 0 auto;
-  font-size: 20px;
-  padding: 12px 0 12px 0;
-  background-color: #2f2f2f;
-  display: flex;
 
-  #logo_img {
-    width: 3rem;
-    fill: #E8DCB8;
+  #party-name {
+    width: 30vw;
   }
-  h1 {
-    font-size: 1.1rem;
-    text-align: center;
-    padding: 0.2rem;
-    color: #E8DCB8;
-  }
-}
-ul {
-  padding: none;
-  li {
-    display: inline;
-    button {
-      background-color: #2f2f2f;
-        color: #E8DCB8;
-        display: inline-block;
-        cursor: pointer;
-        padding: 13px 14px;
-        text-decoration: none;
-        border: none;
+
+  nav {
+    ul {
+      padding: none;
+      li {
+        display: inline;
+        button {
+          background-color: #2f2f2f;
+            color: #E8DCB8;
+            display: inline-block;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 13px 14px;
+            text-decoration: none;
+            border: none;
+          }
+        button:hover {
+          background-color: #b69e58;
+        }
       }
-    button:hover {
-      background-color: #b69e58;
     }
   }
 }
