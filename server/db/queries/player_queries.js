@@ -1,4 +1,4 @@
-// gets a single player from the databse by a player ID
+// gets a single player by player ID
 const getPlayerWithId = function (id, pool) {
   return pool.query(`
   SELECT *
@@ -15,7 +15,7 @@ const getPlayerWithId = function (id, pool) {
 };
 exports.getPlayerWithId = getPlayerWithId;
 
-// gets all player data from the database
+// gets all player data
 const getAllPlayerData = function (id, pool) {
   return pool.query(`
   SELECT *
@@ -31,6 +31,7 @@ const getAllPlayerData = function (id, pool) {
 };
 exports.getAllPlayerData = getAllPlayerData;
 
+// gets a single player's conditions
 const getPlayerConditions = function (id, pool) {
   return pool.query(`
   SELECT conditions.name
