@@ -3,8 +3,8 @@ import './Navbar.scss';
 
 const Navbar = () => {
   return (
-    <div>
-      <h1><img src="/images/scry-icon.svg" alt="logo" id="logo_img"/> Scroll <br/> of Scrying</h1>
+    <div class="navbar">
+      <h1><img src="/images/scry-icon.svg" alt="logo" id="logo_img"/> <br/> Scroll of Scrying</h1>
       <nav>
         <ul>
           <li><button>Party</button></li>
