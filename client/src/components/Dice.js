@@ -9,6 +9,7 @@ function Dice() {
    const [history, setHistory] = useState([]);
    const [active, setActive] = useState(false);
    const [rollActive, setRollActive] = useState(false);
+   const [modifier, setModifier] = useState("0");
    
   
    
@@ -44,7 +45,7 @@ function Dice() {
      let newDice = changeArray(dice)
      
      let roller = new rpgDiceRoller.DiceRoller();
-     const rolls = roller.roll(newDice)
+     const rolls = `You rolled : ${roller.roll(`${newDice} + 3`)}`
      setRollResult(rolls);
      
      
@@ -71,25 +72,30 @@ function Dice() {
      setRollActive(!rollActive)
    }
  
+   const modifierNum = () => {
+    console.log(document.getElementById('modiferInput').value)
+   }
    return(
      <body>
       <button className='diceBtn' onClick={toggleClassRoll}> DICE ROLL</button>
      <div className={rollActive ? 'null' : 'container'}>
      
        <div className='displayText'>
+       
          <textarea
-           value={rollResult} 
-         /> 
- 
-         <textarea
+         readOnly
            value={changeArray(dice)}
          />
          <textarea
+         readOnly
          className={active ? `null` : `history`}
          value={history}
-         
          />
        </div>
+
+      <div className='modifier'>
+        Modifier: <input type='number' id='modiferInput' value=''></input>
+      </div>
  
        <div className='dices'>
          <button onClick={() => addDice("d4")}>d4</button>
@@ -99,7 +105,11 @@ function Dice() {
          <button onClick={() => addDice("d12")}>d12</button>
          <button onClick={() => addDice("d20")}>d20</button>
        </div>
- 
+
+       <textarea readOnly className='resultBar'
+           value={rollResult} 
+         /> 
+
        <div className='rollingDice'>
          <button onClick={() => roll(dice)}>ROLL</button>
          <button onClick={reset}>clear</button>
