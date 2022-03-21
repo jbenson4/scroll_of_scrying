@@ -1,4 +1,4 @@
-// gets a single player by player ID
+// gets an entire player object
 const getPlayerWithId = function (id, pool) {
   return pool
     .query(
@@ -20,29 +20,7 @@ const getPlayerWithId = function (id, pool) {
 };
 exports.getPlayerWithId = getPlayerWithId;
 
-// gets all player data
-const getAllPlayerData = function (pool) {
-  return pool
-    .query(
-      `
-  SELECT *
-  FROM players;
-  `
-    )
-    .then((response) => {
-      if (response.rows[0].length === 0) {
-        return null;
-      } else {
-        return response.rows;
-      }
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
-exports.getAllPlayerData = getAllPlayerData;
-
-// gets a single player's conditions
+// gets a player's conditions
 const getPlayerConditions = function (id, pool) {
   return pool
     .query(
