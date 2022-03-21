@@ -15,7 +15,6 @@ CREATE TABLE players (
   race TEXT,
   dnd_class TEXT,
   stats JSON,
-  condition_id INTEGER,
   level INTEGER
 );
 
