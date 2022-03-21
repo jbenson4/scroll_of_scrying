@@ -1,4 +1,4 @@
-INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Lezana Carlucci', 'human', 'paladin', '{
+INSERT INTO players (name, race, dnd_class ,stats, condition_id, level) VALUES ('Lezana Carlucci', 'human', 'paladin', '{
   "strength": 14,
   "dexterity": 10,
   "constitution": 16,
@@ -7,7 +7,7 @@ INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Lez
   "charisma": 18,
   "hp": 81
 }', 1, 8);
-INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Rorin Grimleeper', 'dwarf', 'fighter', '{
+INSERT INTO players (name, race, dnd_class ,stats, condition_id, level) VALUES ('Rorin Grimleeper', 'dwarf', 'fighter', '{
   "strength": 16,
   "dexterity": 12,
   "constitution": 14,
@@ -16,7 +16,7 @@ INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Ror
   "charisma": 12,
   "hp": 90
 }', 2, 9);
-INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Halyassa Diltheth', 'dragonborn', 'barbarian', '{
+INSERT INTO players (name, race, dnd_class ,stats, condition_id, level) VALUES ('Halyassa Diltheth', 'dragonborn', 'barbarian', '{
   "strength": 15,
   "dexterity": 13,
   "constitution": 14,
@@ -25,7 +25,7 @@ INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Hal
   "charisma": 14,
   "hp": 53
 }', 3, 5);
-INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Nym Silveroak', 'elf', 'ranger', '{
+INSERT INTO players (name, race, dnd_class ,stats, condition_id, level) VALUES ('Nym Silveroak', 'elf', 'ranger', '{
   "strength": 14,
   "dexterity": 16,
   "constitution": 14,
@@ -34,7 +34,7 @@ INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Nym
   "charisma": 16,
   "hp": 58
 }', 4, 5);
-INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Flambard Kaese', 'halfling', 'wizard', '{
+INSERT INTO players (name, race, dnd_class ,stats, condition_id, level) VALUES ('Flambard Kaese', 'halfling', 'wizard', '{
   "strength": 12,
   "dexterity": 12,
   "constitution": 16,
@@ -43,7 +43,7 @@ INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Fla
   "charisma": 13,
   "hp": 61
 }', 5, 6);
-INSERT INTO players (name, race, class ,stats, condition_id, level) VALUES ('Marlypsis Grantham', 'tiefling', 'druid', '{
+INSERT INTO players (name, race, dnd_class ,stats, condition_id, level) VALUES ('Marlypsis Grantham', 'tiefling', 'druid', '{
   "strength": 14,
   "dexterity": 13,
   "constitution": 14,
