@@ -13,7 +13,7 @@ CREATE TABLE players (
 
   name VARCHAR(255) NOT NULL,
   race TEXT,
-  class TEXT,
+  dnd_class TEXT,
   stats JSON,
   condition_id INTEGER,
   level INTEGER
