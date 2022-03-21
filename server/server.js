@@ -19,6 +19,7 @@ db.connect();
 
 // router variables
 const playerRoutes = require('./routers/player-router');
+const partyRoutes = require('./routers/party-router');
 // const conditionRoutes = require('./routers/condition-router');
 // const itemRoutes = require('./routers/item-router');
 // const monsterRoutes = require('./routers/monster-router');
@@ -26,8 +27,8 @@ const playerRoutes = require('./routers/player-router');
 
 // mount all resource routes
 
-app.use('/party', playerRoutes(db));
-app.use('/players', playerRoutes(db));
+app.use('/party', partyRoutes(db));
+app.use('/player', playerRoutes(db));
 // app.use('/condition', conditionRoutes(db));
 
 // listen
