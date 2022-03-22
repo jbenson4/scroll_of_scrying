@@ -82,7 +82,7 @@ function Dice() {
      }
    }
    return(
-     <body>
+     <div>
       <button className='diceBtn' onClick={toggleClassRoll}> DICE ROLL</button>
      <div className={rollActive ? 'null' : 'container'}>
      
@@ -123,7 +123,7 @@ function Dice() {
        </div>
      
      </div>
-     </body>
+     </div>
    )
 }
 
