@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+import './Inventory.scss';
 
 const itemsData = [
   {index: 'adamantine-armor', name: 'Adamantine Armor'},
@@ -12,9 +13,12 @@ const parsedItems = itemsData.map(item => <Item key={item.name} {...item}/>)
 
 const Inventory = () => {
   return (
-    <>
-      { parsedItems }
-    </>
+    <div>
+      <span className='inventoryHeader'>Inventory</span>
+      <div className="inventory">
+        { parsedItems }
+      </div>
+    </div>
   )
 }
 
