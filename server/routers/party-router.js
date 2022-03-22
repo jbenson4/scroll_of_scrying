@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const partyQueries = require('../db/queries/party-queries.js');
+const partyQueries = require('../db/queries/party_queries.js');
 
 module.exports = (db) => {
 
@@ -18,7 +18,6 @@ module.exports = (db) => {
         res.send(data);
       });
   });  
-
   // DELETE routes
   router.delete('/items/:id', (req, res) => {
     const id = Number(req.params.id);
