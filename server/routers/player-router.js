@@ -43,11 +43,10 @@ module.exports = (db) => {
   });
 
   // DELETE routes
-  // Not yet working
   router.delete('/conditions/:id/:index', (req, res) => {
     const id = Number(req.params.id);
     const index = indexFormatter(req.params.index);
-    removeCondition(id, index);
+    removeCondition(id, index, db);
   })
   return router;
 };
