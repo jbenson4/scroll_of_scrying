@@ -26,7 +26,7 @@ const partyRoutes = require('./routers/party-router');
 // mount all resource routes
 
 app.use('/party', partyRoutes(db));
-app.use('/player', playerRoutes(db));
+app.use('/players', playerRoutes(db));
 
 // listen
 app.listen(port, () => {
