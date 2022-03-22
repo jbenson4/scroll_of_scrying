@@ -9,12 +9,12 @@ import { ReactComponent as WizardIcon } from './images/wizard_icon.svg';
 
 const getClassIcon = (className) => {
   const classIcons =  {
-    'barbarian': <BarbarianIcon class="dndClass"/>,
-    'druid': <DruidIcon class="dndClass"/>,
-    'fighter': <FighterIcon class="dndClass"/>,
-    'paladin': <PaladinIcon class="dndClass"/>,
-    'ranger': <RangerIcon class="dndClass"/>,
-    'wizard': <WizardIcon class="dndClass"/>,
+    'barbarian': <BarbarianIcon className="dndClass"/>,
+    'druid': <DruidIcon className="dndClass"/>,
+    'fighter': <FighterIcon className="dndClass"/>,
+    'paladin': <PaladinIcon className="dndClass"/>,
+    'ranger': <RangerIcon className="dndClass"/>,
+    'wizard': <WizardIcon className="dndClass"/>,
   }
   return classIcons[className];
 }
@@ -26,22 +26,26 @@ const Player = (props) => {
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
       <table>
-        <tr>
-          <th>STR</th>
-          <th>DEX</th>
-          <th>CON</th>
-          <th>INT</th>
-          <th>WIS</th>
-          <th>CHA</th>
-        </tr>
-        <tr>
-          <td>{stats.strength}</td>
-          <td>{stats.dexterity}</td>
-          <td>{stats.constitution}</td>
-          <td>{stats.intelligence}</td>
-          <td>{stats.wisdom}</td>
-          <td>{stats.charisma}</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>STR</th>
+            <th>DEX</th>
+            <th>CON</th>
+            <th>INT</th>
+            <th>WIS</th>
+            <th>CHA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{stats.strength}</td>
+            <td>{stats.dexterity}</td>
+            <td>{stats.constitution}</td>
+            <td>{stats.intelligence}</td>
+            <td>{stats.wisdom}</td>
+            <td>{stats.charisma}</td>
+          </tr>
+        </tbody>
       </table>
 
     </article>

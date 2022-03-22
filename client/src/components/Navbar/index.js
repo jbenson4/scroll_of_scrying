@@ -3,7 +3,7 @@ import './Navbar.scss';
 
 const Navbar = ({setSelectedTab}) => {
   return (
-    <div class="navbar">
+    <div className="navbar">
       <span id="party-name">Company of the Yellow Banner</span>
       <nav>
         <ul>

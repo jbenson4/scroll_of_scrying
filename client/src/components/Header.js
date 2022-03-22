@@ -5,7 +5,7 @@ import { ReactComponent as LogoSvg } from './images/scry-icon.svg';
 const Header = () => {
   return (
     <header>
-      <h1><LogoSvg class="LogoSvg"/> Scroll of Scrying</h1>
+      <h1><LogoSvg className="LogoSvg"/> Scroll of Scrying</h1>
     </header>
   )
 }
