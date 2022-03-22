@@ -1,9 +1,10 @@
 const { default: axios } = require('axios');
 const express = require('express');
+const { removeCondition } = require('../db/deletions/player_deletion.js');
 const router = express.Router();
 const playerQueries = require('../db/queries/player_queries.js');
 const { editPlayer } = require('../db/updates/player_updates.js');
-const { playerConditionHelper } = require('./helpers');
+const { playerConditionHelper, indexFormatter } = require('./helpers');
 
 module.exports = (db) => {
 
@@ -34,9 +35,19 @@ module.exports = (db) => {
       })
   });
 
+  // POST routes
   router.post('/conditions/:id/:index', (req, res) => {
     const id = Number(req.params.id);
-    playerConditionHelper(db, id, req.params.index);
+    const index = indexFormatter(req.params.index);
+    playerConditionHelper(db, id, index);
   });
+
+  // DELETE routes
+  // Not yet working
+  router.delete('/conditions/:id/:index', (req, res) => {
+    const id = Number(req.params.id);
+    const index = indexFormatter(req.params.index);
+    removeCondition(id, index);
+  })
   return router;
 };
