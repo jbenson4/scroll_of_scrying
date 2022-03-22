@@ -1,0 +1,19 @@
+.combatPlayer {
+  display: flex;
+  border: 2px solid black;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  .dndClass {
+    width: 10vw;
+    margin-left: 10px;
+  }
+}
+
+.combatPlayer #health {
+  text-align: center;
+}
+
+.combatPlayer #initiative {
+  margin-right: 10px;
+}

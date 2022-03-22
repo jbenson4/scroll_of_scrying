@@ -4,11 +4,11 @@ import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Party from './components/Party';
 import Dice from './components/Dice';
-
+import Combat from './components/Combat/Combat';
 
 const TABS = {
   'party': <Party />,
-  'combat': <Dice />,
+  'combat': <Combat />,
   'notes': <Dice />,
   'tables': <Dice />
 }
