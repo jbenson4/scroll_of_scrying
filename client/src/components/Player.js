@@ -6,23 +6,25 @@ import { ReactComponent as FighterIcon } from './images/fighter_icon.svg';
 import { ReactComponent as PaladinIcon } from './images/paladin_icon.svg';
 import { ReactComponent as RangerIcon } from './images/ranger_icon.svg';
 import { ReactComponent as WizardIcon } from './images/wizard_icon.svg';
+import Condition from './Condition';
 
 const getClassIcon = (className) => {
   const classIcons =  {
-    'barbarian': <BarbarianIcon className="dndClass"/>,
-    'druid': <DruidIcon className="dndClass"/>,
-    'fighter': <FighterIcon className="dndClass"/>,
-    'paladin': <PaladinIcon className="dndClass"/>,
-    'ranger': <RangerIcon className="dndClass"/>,
-    'wizard': <WizardIcon className="dndClass"/>,
+    'barbarian': <BarbarianIcon className="dndClass barbarian"/>,
+    'druid': <DruidIcon className="dndClass druid"/>,
+    'fighter': <FighterIcon className="dndClass fighter"/>,
+    'paladin': <PaladinIcon className="dndClass paladin"/>,
+    'ranger': <RangerIcon className="dndClass ranger"/>,
+    'wizard': <WizardIcon className="dndClass wizard"/>,
   }
   return classIcons[className];
 }
 
 const Player = (props) => {
-  const { name, race, dnd_class, stats, condition_id, level } = props;
+  const { name, race, dnd_class, stats, condition_id, level, conditions } = props;
+
   return (
-    <article class="Player">
+    <article className="Player">
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
       <table>
@@ -47,7 +49,9 @@ const Player = (props) => {
           </tr>
         </tbody>
       </table>
-
+      <div className="conditions">
+        {conditions !== undefined && conditions.map(condition => <Condition key={name + "_" + condition.index} {...condition}/>)}
+      </div>
     </article>
   )
 }
