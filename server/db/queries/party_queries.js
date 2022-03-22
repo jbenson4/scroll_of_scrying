@@ -20,6 +20,7 @@ const getPartyData = function (pool) {
 };
 exports.getPartyData = getPartyData;
 
+// gets all party items
 const getPartyItems = function (pool) {
   return pool
     .query(
@@ -40,24 +41,3 @@ const getPartyItems = function (pool) {
     });
 };
 exports.getPartyItems = getPartyItems;
-
-const destroyItem = function (id, pool) {
-  return pool
-    .query(
-      `
-      DELETE FROM items
-      WHERE id = $1;
-      `
-    , [id])
-    .then((response) => {
-      if (response.rows[0].length === 0) {
-        return null;
-      } else {
-        return response.rows;
-      }
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
-exports.destroyItem = destroyItem;
