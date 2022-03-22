@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const partyQueries = require('../db/queries/party_queries.js');
-const { itemHelper } = require('./helpers.js');
+const { itemHelper, indexFormatter } = require('./helpers.js');
+const { destroyItem } = require('../db/deletions/party_deletion')
 
 module.exports = (db) => {
 
@@ -22,16 +23,16 @@ module.exports = (db) => {
 
   // POST routes
   router.post('/items/:index', (req, res) => {
-    itemHelper(db, req.params.index);
+    const index = indexFormatter(req.params.index);
+    itemHelper(db, index);
   })
   
   // DELETE routes
-  router.delete('/items/:id', (req, res) => {
-    const id = Number(req.params.id);
-    console.log('id: ', id);
-    partyQueries.destroyItem(id, db)
+  router.delete('/items/:index', (req, res) => {
+    const index = indexFormatter(req.params.index);
+    destroyItem(index, db)
       .then((response) => {
-        console.log(`Item ${id} destroyed`);
+        console.log(`Item ${index} destroyed`);
         res.send(response);
       })
   })
