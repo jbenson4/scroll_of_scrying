@@ -1,7 +1,9 @@
+const { default: axios } = require('axios');
 const express = require('express');
 const router = express.Router();
 const playerQueries = require('../db/queries/player_queries.js');
 const { editPlayer } = require('../db/updates/player_updates.js');
+const { playerConditionHelper } = require('./helpers');
 
 module.exports = (db) => {
 
@@ -32,8 +34,9 @@ module.exports = (db) => {
       })
   });
 
-  // router.put('/conditions/:id', (req, res) => {
-  //   const editedConditions = req.body;
-  // });
+  router.post('/conditions/:id/:index', (req, res) => {
+    const id = Number(req.params.id);
+    playerConditionHelper(db, id, req.params.index);
+  });
   return router;
 };
