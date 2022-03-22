@@ -9,7 +9,7 @@ function Dice() {
    const [history, setHistory] = useState([]);
    const [active, setActive] = useState(false);
    const [rollActive, setRollActive] = useState(false);
-   const [modifier, setModifier] = useState("0");
+   const [modifier, setModifier] = useState(0);
    
   
    
@@ -45,9 +45,9 @@ function Dice() {
      let newDice = changeArray(dice)
      
      let roller = new rpgDiceRoller.DiceRoller();
-     const rolls = `You rolled : ${roller.roll(`${newDice} + 3`)}`
+     const rolls = `You rolled : ${roller.roll(`${newDice} + ${modifier}`)}`
      setRollResult(rolls);
-     
+    console.log(modifier)
      
      let modHistory = `${roller.output} \n`.slice(",")
      if (replace) {
@@ -72,8 +72,14 @@ function Dice() {
      setRollActive(!rollActive)
    }
  
+   //check if modifier has number--------------------------------------------
    const modifierNum = () => {
-    console.log(document.getElementById('modiferInput').value)
+     var x = document.getElementById('modifierInput')
+     if (!x.value) {
+        setModifier(0)
+     } else {
+        setModifier(x.value)
+     }
    }
    return(
      <body>
@@ -94,7 +100,7 @@ function Dice() {
        </div>
 
       <div className='modifier'>
-        Modifier: <input type='number' id='modiferInput' value=''></input>
+        Modifier: <input type='number' id='modifierInput' onKeyUp={modifierNum}></input>
       </div>
  
        <div className='dices'>
@@ -117,7 +123,6 @@ function Dice() {
        </div>
      
      </div>
-      
      </body>
    )
 }
