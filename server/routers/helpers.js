@@ -2,10 +2,12 @@ const { default: axios } = require("axios");
 const { addPlayerCondition } = require("../db/insertions/condition_insertion");
 const { addPartyItem } = require("../db/insertions/item_insertion");
 
+const indexFormatter = function (index) {
+  return index.trim().replace(/\s+/g, '-').toLowerCase();
+};
 
 const playerConditionHelper = function (db, id, index) {
-  const formatted = index.trim().replace(/\s+/g, '-').toLowerCase();
-  axios.get(`https://www.dnd5eapi.co/api/conditions/${formatted}`)
+  axios.get(`https://www.dnd5eapi.co/api/conditions/${index}`)
       .then((response) => {
         const description = response.data.desc.join(' ');
         const values = [
@@ -19,11 +21,10 @@ const playerConditionHelper = function (db, id, index) {
           .catch((err) => console.log(err))
       })
       .catch((err) => console.log(err.message))
-}
+};
 
 const itemHelper = function (db, index) {
-  const formatted = index.trim().replace(/\s+/g, '-').toLowerCase();
-  axios.get(`https://www.dnd5eapi.co/api/magic-items/${formatted}`)
+  axios.get(`https://www.dnd5eapi.co/api/magic-items/${index}`)
       .then((response) => {
         const description = response.data.desc.join(' ');
         const values = [
@@ -36,9 +37,10 @@ const itemHelper = function (db, index) {
           .catch((err) => console.log(err))
       })
       .catch((err) => console.log(err.message))
-}
+};
 
 module.exports = {
   playerConditionHelper,
-  itemHelper
+  itemHelper,
+  indexFormatter
 };
