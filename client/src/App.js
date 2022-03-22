@@ -4,13 +4,15 @@ import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Party from './components/Party';
 import Dice from './components/Dice';
+import Notes from './components/Notes';
+import Tables from './components/Tables';
 
 
 const TABS = {
   'party': <Party />,
   'combat': <Dice />,
-  'notes': <Dice />,
-  'tables': <Dice />
+  'notes': <Notes />,
+  'tables': <Tables />
 }
 
 function App() {
