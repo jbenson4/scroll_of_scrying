@@ -23,7 +23,8 @@ CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
 
   index TEXT,
-  name TEXT
+  name TEXT,
+  description TEXT
 );
 
 -- Recreate conditions Table
