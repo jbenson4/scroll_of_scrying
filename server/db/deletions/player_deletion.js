@@ -2,9 +2,10 @@
 const removeCondition = function (id, index, pool) {
   return pool.query(
     `
-    DELETE FROM conditions
+    DELETE FROM players_conditions
     WHERE player_id = $1
-    AND index = $2;
+    AND condition_id = (SELECT conditions.id FROM conditions WHERE conditions.index = $2)
+    RETURNING *;
     `
   , [id, index])
   .then((result) => {
