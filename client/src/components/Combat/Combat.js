@@ -1,13 +1,11 @@
 import React from 'react';
 import CombatPlayerList from './CombatPlayerList';
 
-import AddToList from './addtoList';
 
-function Combat () {
+function Combat (props) {
 
 return(
 <main>
-  <AddToList/>
   <CombatPlayerList/>
 </main>)
 };
