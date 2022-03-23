@@ -6,7 +6,9 @@ const getPlayerWithId = function (id, pool) {
   SELECT *
   FROM players
   WHERE players.id = $1;
-  `, [id])
+  `,
+      [id]
+    )
     .then((response) => {
       if (response.rows[0].length === 0) {
         return null;
@@ -25,12 +27,14 @@ const getPlayerConditions = function (id, pool) {
   return pool
     .query(
       `
-  SELECT conditions.name
-  FROM players_conditions_ownership
-  JOIN players ON player_id = players.id
-  JOIN conditions ON conditions.id = players_conditions_ownership.condition_id
-  WHERE players.id = $1;
-  `, [id])
+      SELECT conditions.index, conditions.name, conditions.description, player_id
+      FROM players_conditions
+      JOIN players ON player_id = players.id
+      JOIN conditions ON conditions.id = players_conditions.condition_id
+      WHERE players.id = $1;
+    `,
+      [id]
+    )
     .then((response) => {
       if (response.rows[0].length === 0) {
         return null;
