@@ -39,7 +39,7 @@ module.exports = (db) => {
   router.post('/conditions/:id/:index', (req, res) => {
     const id = Number(req.params.id);
     const index = indexFormatter(req.params.index);
-    playerConditionHelper(db, id, index);
+    playerConditionHelper(id, index, db);
   });
 
   // DELETE routes
