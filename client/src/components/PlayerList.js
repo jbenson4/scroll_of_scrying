@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Player from './Player';
 import './PlayerList.scss';
-import { PartyContext } from './providers/PartyProvider';
+import { PartyContext } from '../providers/PartyProvider';
 
 const playerData = [
   {
@@ -23,6 +23,10 @@ const playerData = [
       {
         index: 'blinded',
         name: 'Blinded'
+      },
+      {
+        index: 'poisoned',
+        name: 'Poisoned'
       }
     ]
   },
@@ -132,7 +136,7 @@ const PlayerList = () => {
   const { state } = useContext(PartyContext);
   return (
     <div className="PlayerList">
-      {state.players.map(player => <Player key={player.name} {...player}/>)}
+      {state.players !== undefined && state.players.map(player => <Player key={player.name} {...player}/>)}
     </div>
   )
 }
