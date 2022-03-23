@@ -6,6 +6,7 @@ import Party from './components/Party';
 import Dice from './components/Dice';
 import Notes from './components/Notes';
 import Tables from './components/Tables';
+import PlayerProvider from './components/providers/PlayerProvider';
 
 
 const TABS = {
@@ -18,14 +19,16 @@ const TABS = {
 function App() {
   const [selectedTab, setSelectedTab] = useState('party');
   return (
-    <div className="App">
-      <Header />
-      <Navbar setSelectedTab={setSelectedTab}/>
-      <Dice />
-      <section>
-      {TABS[selectedTab]}
-      </section>
-    </div>
+    <PlayerProvider>
+      <div className="App">
+        <Header />
+        <Navbar setSelectedTab={setSelectedTab}/>
+        <Dice />
+        <section>
+        {TABS[selectedTab]}
+        </section>
+      </div>
+    </PlayerProvider>
   );
 }
 
