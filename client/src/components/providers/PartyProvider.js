@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const PlayerContext = createContext();
+export const PartyContext = createContext();
 
-export default function PlayerProvider(props) {
+export default function PartyProvider(props) {
   const [state, setState] = useState({
     players: [],
     items: [],
@@ -21,8 +21,8 @@ export default function PlayerProvider(props) {
   const providerData = { state }
 
   return (
-    <PlayerContext.Provider value={providerData}>
+    <PartyContext.Provider value={providerData}>
       { props.children }
-    </PlayerContext.Provider>
+    </PartyContext.Provider>
   )
 }

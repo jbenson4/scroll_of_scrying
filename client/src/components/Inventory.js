@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Item from './Item';
 import './Inventory.scss';
-import { PlayerContext } from './providers/PlayerProvider';
+import { PartyContext } from './providers/PartyProvider';
 
 const itemsData = [
   {index: 'adamantine-armor', name: 'Adamantine Armor'},
@@ -13,7 +13,7 @@ const itemsData = [
 const parsedItems = itemsData.map(item => <Item key={item.name} {...item}/>)
 
 const Inventory = () => {
-  const { state } = useContext(PlayerContext);
+  const { state } = useContext(PartyContext);
 
   return (
     <div>

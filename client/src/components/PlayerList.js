@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Player from './Player';
 import './PlayerList.scss';
-import { PlayerContext } from './providers/PlayerProvider';
+import { PartyContext } from './providers/PartyProvider';
 
 const playerData = [
   {
@@ -129,7 +129,7 @@ const playerData = [
 const parsedPlayers = playerData.map(player => <Player key={player.name} {...player}/>);
 
 const PlayerList = () => {
-  const { state } = useContext(PlayerContext);
+  const { state } = useContext(PartyContext);
   return (
     <div className="PlayerList">
       {state.players.map(player => <Player key={player.name} {...player}/>)}
