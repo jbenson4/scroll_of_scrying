@@ -1,3 +1,6 @@
+@import "../../styles/variables.scss";
+
+
 .Player {
   border: 2px solid black;
   width: 48vw;
@@ -35,5 +38,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &:hover {
+    background-color: darken($background, 5%);
   }
 }
