@@ -6,21 +6,8 @@ const indexFormatter = function (index) {
   return index.trim().replace(/\s+/g, '-').toLowerCase();
 };
 
-const playerConditionHelper = function (db, id, index) {
-  axios.get(`https://www.dnd5eapi.co/api/conditions/${index}`)
-      .then((response) => {
-        const description = response.data.desc.join(' ');
-        const values = [
-          id,
-          response.data.index,
-          response.data.name,
-          description
-        ];
-        addPlayerCondition(values, db)
-          .then((res) => console.log(res))
-          .catch((err) => console.log(err))
-      })
-      .catch((err) => console.log(err.message))
+const playerConditionHelper = function (id, index, db) {
+  addPlayerCondition(id, index, db);
 };
 
 const itemHelper = function (db, index) {
