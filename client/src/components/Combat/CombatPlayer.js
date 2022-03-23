@@ -21,15 +21,15 @@ const getClassIcon = (className) => {
 
 const CombatPlayer = (props) => {
 
-  const { name, dnd_class, stats, level} = props
+  const { name, dnd_class, stats} = props
   return (
   <article className="combatPlayer">
     {getClassIcon(dnd_class)}
     <div>
-      <h1>{name} | lvl {level}</h1>
-      <h4 id="health"> hp: {stats.hp} </h4>
+      <h1>{name}</h1>
+      <h4 id="health"> HP: {stats.hp} </h4>
     </div>
-      <h4 id='initiative'> initiative: {stats.initiative} </h4>
+      <h4 id='initiative'> Initiative: {stats.initiative} </h4>
     
   </article>
 )};
