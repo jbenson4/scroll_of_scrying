@@ -1,8 +1,11 @@
 const addPlayerCondition = function (values, pool) {
-  return pool.query(`
-    INSERT INTO conditions (index, name, description)
-    VALUES ($1, $2, $3)
-    RETURNING *;
-  `, values)
+  return pool.query(
+    `
+  INSERT INTO players_conditions (player_id, condition_id)
+  VALUES ($1, (SELECT conditions.id FROM conditions WHERE conditions.index = $2))
+  RETURNING *;
+  `,
+    values
+  );
 };
 exports.addPlayerCondition = addPlayerCondition;
