@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS players CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS conditions CASCADE;
-DROP TABLE IF EXISTS players_conditions_ownership CASCADE;
+DROP TABLE IF EXISTS players_conditions CASCADE;
 
 -- Recreate Tables
 ----------------------------------------
@@ -15,7 +15,6 @@ CREATE TABLE players (
   race TEXT,
   dnd_class TEXT,
   stats JSON,
-  condition_id INTEGER,
   level INTEGER
 );
 
@@ -24,21 +23,21 @@ CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
 
   index TEXT,
-  name TEXT
+  name TEXT,
+  description TEXT
 );
 
 -- Recreate conditions Table
 CREATE TABLE conditions (
   id SERIAL PRIMARY KEY NOT NULL,
-  player_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
 
   index TEXT,
   name TEXT,
   description TEXT
 );
 
--- Recreate players_conditions_ownership Join Table
-CREATE TABLE players_conditions_ownership (
+-- Recreate players_conditions Join Table
+CREATE TABLE players_conditions (
   id SERIAL PRIMARY KEY NOT NULL,
   player_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
   condition_id INTEGER REFERENCES conditions(id) ON DELETE CASCADE

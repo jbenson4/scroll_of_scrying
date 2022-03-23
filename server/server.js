@@ -1,7 +1,9 @@
+// load .env data into process.env
+require("dotenv").config();
+
 const express = require('express');
 const morgan = require('morgan');
 
-// constants
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -9,8 +11,23 @@ const port = process.env.PORT || 8080;
 app.use(morgan('dev'));
 app.use(express.json())
 
-// routes
+// PG database client/connection setup
+const { Pool } = require("pg");
+const dbParams = require("./lib/db.js");
+const db = new Pool(dbParams);
+db.connect();
 
+// router variables
+const playerRoutes = require('./routers/player-router');
+const partyRoutes = require('./routers/party-router');
+const monsterRoutes = require('./routers/monster-router');
+// const noteRoutes = require('./routers/note-router');
+
+// mount all resource routes
+
+app.use('/party', partyRoutes(db));
+app.use('/players', playerRoutes(db));
+app.use('/monsters', monsterRoutes(db))
 
 // listen
 app.listen(port, () => {
