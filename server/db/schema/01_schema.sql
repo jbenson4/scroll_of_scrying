@@ -30,7 +30,6 @@ CREATE TABLE items (
 -- Recreate conditions Table
 CREATE TABLE conditions (
   id SERIAL PRIMARY KEY NOT NULL,
-  player_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
 
   index TEXT,
   name TEXT,
