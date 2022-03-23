@@ -40,7 +40,7 @@ const getConditions = (index) => {
 const Condition = (props) => {
   const { name, index } = props;
   return (
-    <div class="condition">
+    <div className="condition">
       {getConditions(index)}
     </div>
   )
