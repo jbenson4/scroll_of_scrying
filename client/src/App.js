@@ -6,7 +6,7 @@ import Party from './components/Party';
 import Dice from './components/Dice';
 import Notes from './components/Notes';
 import Tables from './components/Tables';
-import PlayerProvider from './components/providers/PartyProvider';
+import PlayerProvider from './providers/PartyProvider';
 
 
 const TABS = {
