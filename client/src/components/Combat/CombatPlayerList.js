@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import CombatPlayer from "./CombatPlayer";
 import './CombatPlayerList.scss'
+import MonsterList from "./Monster";
 
 
 
 function CombatPlayerList (props) {
+
   const [name, setName] = useState("");
   const [hp, setHp] = useState("");
   const [initiative, setInitiative] = useState('');
@@ -77,6 +79,8 @@ function CombatPlayerList (props) {
       level: 7
     }
   ]);
+  
+  
 
   const reset = () => {
     setName("")
@@ -95,7 +99,7 @@ function CombatPlayerList (props) {
      }
      if (initiative === "" || initiative === 0) {
       setError("Initiative can't be empty/zero")
-    } else {
+      } else {
       setError('');
     
       let result = {
@@ -107,14 +111,15 @@ function CombatPlayerList (props) {
       };
       setPlayerData([...playerData, result]);
       reset();
+      
     }
   }
-
+  
+  
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.initiative-a.stats.initiative});
   const parsedPlayers = newPlayerData.map(player => <CombatPlayer key={player.name} {...player}/>)
-
- 
-
+  
+  
 return (
   <div className="CombatList">
     <section>
@@ -144,7 +149,7 @@ return (
         <button onClick={validate}>Create</button>
         <button onClick={reset}>Clear</button>
       </section>
-      
+      <MonsterList/>
     {parsedPlayers}
   </div>
 )
