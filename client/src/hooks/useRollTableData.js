@@ -5,25 +5,35 @@ import kebabcase from 'lodash.kebabcase';
 
 // Custom hook for handling state between different roll table categories
 export default function useRollTableData() {
-  const [category, setCategory ] = useState();
+  const [category, setCategory ] = useState({
+    index: '',
+    tableLength: 10
+  });
   const [categoryItems, setCategoryItems] = useState();
-  const [details, setDetails] = useState();
 
-  const setContext = (event) => {
+  const setTableCategory = (event) => {
     const uri = kebabcase(event.target.innerText);
-    setCategory(uri);
+    setCategory((prev) => ({
+      ...prev,
+      index: uri,
+    }));
   };
-  
-  const num = 10;
+
+  const setTableLength = (event) => {
+    const length = event.target.value;
+    setCategory((prev) => ({
+      ...prev,
+      tableLength: length
+    }));
+  }
   
   useEffect(() => {
     
-    axios.get(`https://www.dnd5eapi.co/api/${category}`)
+    axios.get(`https://www.dnd5eapi.co/api/${category.index}`)
     .then((res) => {
       const array = res.data.results;
       const items = [];
-      const tableLength = num;
-      while (items.length < tableLength) {
+      while (items.length < category.tableLength) {
         const randomElement = array[Math.floor(Math.random() * array.length)]
         items.push(randomElement);
       }
@@ -32,5 +42,5 @@ export default function useRollTableData() {
       .catch((err) => console.log(err))
     }, [category]);
 
-  return { category, categoryItems, setContext };
+  return { category, categoryItems, setTableCategory, setTableLength };
 }
