@@ -1,5 +1,7 @@
+@import "styles/variables.scss";
+
 .App {
-  background-color: #E8DCB8;
+  background-color: $background;
   font-size: calc(10px + 2vmin);
 }
 

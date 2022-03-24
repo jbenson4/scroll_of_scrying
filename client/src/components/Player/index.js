@@ -1,12 +1,12 @@
 import React from 'react';
 import './Player.scss';
-import { ReactComponent as BarbarianIcon } from './images/barbarian_icon.svg';
-import { ReactComponent as DruidIcon } from './images/druid_icon.svg';
-import { ReactComponent as FighterIcon } from './images/fighter_icon.svg';
-import { ReactComponent as PaladinIcon } from './images/paladin_icon.svg';
-import { ReactComponent as RangerIcon } from './images/ranger_icon.svg';
-import { ReactComponent as WizardIcon } from './images/wizard_icon.svg';
-import Condition from './Condition';
+import { ReactComponent as BarbarianIcon } from '../images/barbarian_icon.svg';
+import { ReactComponent as DruidIcon } from '../images/druid_icon.svg';
+import { ReactComponent as FighterIcon } from '../images/fighter_icon.svg';
+import { ReactComponent as PaladinIcon } from '../images/paladin_icon.svg';
+import { ReactComponent as RangerIcon } from '../images/ranger_icon.svg';
+import { ReactComponent as WizardIcon } from '../images/wizard_icon.svg';
+import Condition from '../Condition';
 
 const getClassIcon = (className) => {
   const classIcons =  {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Item from './Item';
 import './Inventory.scss';
-import { PartyContext } from './providers/PartyProvider';
+import { PartyContext } from '../providers/PartyProvider';
 
 const itemsData = [
   {index: 'adamantine-armor', name: 'Adamantine Armor'},
