@@ -111,7 +111,6 @@ function CombatPlayerList (props) {
       };
       setPlayerData([...playerData, result]);
       reset();
-      
     }
   }
   
@@ -149,7 +148,7 @@ return (
         <button onClick={validate}>Create</button>
         <button onClick={reset}>Clear</button>
       </section>
-      <MonsterList/>
+      <MonsterList />
     {parsedPlayers}
   </div>
 )
