@@ -1,35 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import TableRow from './TableRow'
-import axios from 'axios';
+import useRollTableData from '../hooks/useRollTableData';
 
 const Tables = () => {
-  const [ categoryItems, setCategoryItems ] = useState();
-  const num = 10;
-  useEffect(() => {
+  const { categoryItems, setContext } = useRollTableData();
 
-    axios.get('https://www.dnd5eapi.co/api/monsters')
-    .then((res) => {
-      // console.log('res: ', res.data)
-      const array = res.data.results;
-      const items = [];
-      const tableLength = num;
-      while (items.length < tableLength) {
-        const randomElement = array[Math.floor(Math.random() * array.length)]
-        items.push(randomElement);
-      }
-      const itemsArray = items.map((item) => (
-        <TableRow name={item.name} />
-        ))
-        setCategoryItems(itemsArray);
-      })
-      .catch((err) => console.log(err))
-    }, []);
   return (
     <div>
-      Tables
-      <ul>
-      {categoryItems}
-      </ul>
+      <button onClick={setContext}>Monsters</button>
+      <button onClick={setContext}>Magic Items</button>
+      <button onClick={setContext}>NPCs</button>
+      {categoryItems !== undefined && categoryItems.map((item) => <TableRow key={item.id} name={item.name} />)}
     </div>
   )
 }
