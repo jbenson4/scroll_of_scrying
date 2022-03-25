@@ -9,25 +9,11 @@ import Tables from './components/Tables';
 import PlayerProvider from './providers/PartyProvider';
 import useRollTableData from './hooks/useRollTableData';
 import useElementDetails from './hooks/useElementDetails';
-
-
-// const TABS = {
-//   'party': <Party />,
-//   'combat': <Dice />,
-//   'notes': <Notes />,
-//   'tables': <Tables
-//   category={category}
-//   setCategory={setCategory}
-//   setTableCategory={setTableCategory}
-//   setTableLength={setTableLength}
-//   categoryItems={categoryItems}
-//   getDetails={getDetails}
-//   />
-// }
+import Modal from './components/Modal';
 
 function App() {
   const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
-  const { getDetails } = useElementDetails();
+  const { details, getDetails, showModal } = useElementDetails();
   const TABS = {
     'party': <Party />,
     'combat': <Dice />,
@@ -39,8 +25,10 @@ function App() {
     setTableLength={setTableLength}
     categoryItems={categoryItems}
     getDetails={getDetails}
+    showModal={showModal}
     />
   }
+
   const [selectedTab, setSelectedTab] = useState('party');
   return (
     <PlayerProvider>
@@ -48,6 +36,7 @@ function App() {
         <Header />
         <Navbar setSelectedTab={setSelectedTab}/>
         <Dice />
+        <Modal show={details.show} details={details.data} showModal={showModal} category={category.index} />
         <section>
         {TABS[selectedTab]}
         </section>
