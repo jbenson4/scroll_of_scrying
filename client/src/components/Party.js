@@ -6,7 +6,6 @@ const Party = () => {
   return (
     <div>
       <PlayerList />
-      <Inventory />
     </div>
   )
 }
