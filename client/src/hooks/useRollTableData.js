@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import kebabcase from 'lodash.kebabcase';
-import FCG from "fantasy-content-generator";
 import npbff from "npbff";
 
 
