@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Item from './Item';
 import './Inventory.scss';
+import { PartyContext } from '../providers/PartyProvider';
 
 const itemsData = [
   {index: 'adamantine-armor', name: 'Adamantine Armor'},
@@ -12,11 +13,13 @@ const itemsData = [
 const parsedItems = itemsData.map(item => <Item key={item.name} {...item}/>)
 
 const Inventory = () => {
+  const { state } = useContext(PartyContext);
+
   return (
     <div>
       <span className='inventoryHeader'>Inventory</span>
       <div className="inventory">
-        { parsedItems }
+        { state.items.map(item => <Item key={item.name} {...item}/>) }
       </div>
     </div>
   )

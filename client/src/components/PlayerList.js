@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Player from './Player';
 import './PlayerList.scss';
+import { PartyContext } from '../providers/PartyProvider';
 
 const playerData = [
   {
@@ -17,7 +18,17 @@ const playerData = [
       hp: 81
     },
     condition_id: 1,
-    level: 8
+    level: 8,
+    conditions: [
+      {
+        index: 'blinded',
+        name: 'Blinded'
+      },
+      {
+        index: 'poisoned',
+        name: 'Poisoned'
+      }
+    ]
   },
   {
     name: 'Rorin Grimleeper',
@@ -33,7 +44,8 @@ const playerData = [
       hp: 90
     },
     condition_id: 2,
-    level: 9
+    level: 9,
+    conditions: []
   },
   {
     name: 'Halyassa Diltheth',
@@ -49,7 +61,8 @@ const playerData = [
       hp: 53
     },
     condition_id: 3,
-    level: 5
+    level: 5,
+    conditions: []
   },
   {
     name: 'Nym Silveroak',
@@ -65,7 +78,13 @@ const playerData = [
       hp: 58
     },
     condition_id: 4,
-    level: 5
+    level: 5,
+    conditions: [
+      {
+        index: 'invisible',
+        name: 'Invisible'
+      }
+    ]
   },
   {
     name: 'Flambard Kaese',
@@ -81,7 +100,17 @@ const playerData = [
       hp: 61
     },
     condition_id: 5,
-    level: 6
+    level: 6,
+    conditions: [
+      {
+        index: 'exhaustion',
+        name: 'Exhaustion'
+      },
+      {
+        index: 'restrained',
+        name: 'Restrained'
+      }
+    ]
   },
   {
     name: 'Marlypsis Grantham',
@@ -101,12 +130,14 @@ const playerData = [
   }
 ];
 
-const parsedPlayers = playerData.map(player => <Player key={player.name} {...player}/>)
+const parsedPlayers = playerData.map(player => <Player key={player.name} {...player}/>);
 
 const PlayerList = () => {
+  const { state } = useContext(PartyContext);
+  console.log(state)
   return (
-    <div class="PlayerList">
-      { parsedPlayers }
+    <div className="PlayerList">
+      {state.players !== undefined && state.players.map(player => <Player key={player.name} {...player}/>)}
     </div>
   )
 }

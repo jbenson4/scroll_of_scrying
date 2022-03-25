@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+
+
+.Player {
+  border: 2px solid black;
+  width: 48vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  table: {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dndClass {
+    width: 10vw;
+    &.barbarian {
+      fill: darkred;
+    }
+    &.druid {
+      fill: green;
+    }
+    &.fighter {
+      fill: navy;
+    }
+    &.paladin {
+      fill: goldenrod;
+    }
+    &.ranger {
+      fill: darkolivegreen;
+    }
+    &.wizard {
+      fill: purple;
+    }
+  }
+  .conditions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &:hover {
+    background-color: darken($background, 5%);
+  }
+}

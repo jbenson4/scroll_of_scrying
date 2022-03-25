@@ -13,5 +13,25 @@ module.exports = (db) => {
     })
     .catch((err) => console.log(err))
   });
+
+  router.get('/roll/:num', (req, res) => {
+    const num = Number(req.params.num);
+    axios('https://www.dnd5eapi.co/api/monsters')
+    .then((res) => {
+      // console.log('res: ', res.data)
+      const array = res.data.results;
+      const items = [];
+      const tableLength = num;
+      while (items.length < tableLength) {
+        const randomElement = array[Math.floor(Math.random() * array.length)]
+        items.push(randomElement);
+      }
+
+      for (const i of items) {
+        console.log(i.name);
+      }
+    })
+    .catch((err) => console.log(err))
+  })
   return router;
 };
