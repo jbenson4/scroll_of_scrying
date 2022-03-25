@@ -6,19 +6,21 @@ export const PartyContext = createContext();
 export default function PartyProvider(props) {
   const [state, setState] = useState({
     players: [],
-    items: [],
+    items: []
   })
 
   useEffect(() => {
     Promise.all([
       axios.get("/party"),
-      axios.get("/party/items")
+      axios.get("/party/items"),
     ]).then((all) => {
-      setState(prev => ({...prev, players: all[0].data, items: all[1].data}));
+      setState(prev => ({...prev, players: all[0].data, 
+        items: all[1].data, 
+      }));
     })
   }, []);
 
-  const providerData = { state }
+  const providerData = { state, setState }
 
   return (
     <PartyContext.Provider value={providerData}>
