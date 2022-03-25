@@ -6,12 +6,14 @@ import Party from './components/Party';
 import Dice from './components/Dice';
 import Notes from './components/Notes';
 import Tables from './components/Tables';
+import Inventory from './components/Inventory';
 import PlayerProvider from './providers/PartyProvider';
 import Combat from './components/Combat/Combat.js'
 
 
 const TABS = {
   'party': <Party />,
+  'inventory': <Inventory />,
   'combat': <Combat />,
   'notes': <Notes />,
   'tables': <Tables />

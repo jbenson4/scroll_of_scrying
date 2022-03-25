@@ -13,6 +13,7 @@ function CombatPlayerList (props) {
   const [hp, setHp] = useState("");
   const [dexterity, setDexterity] = useState('');
   const [dnd_class, setDnDClass] = useState('');
+  const [initiative, setInitiative] = useState();
   const [playerData, setPlayerData] = useState([{
     name: 'Lezana Carlucci',
     race: 'human',

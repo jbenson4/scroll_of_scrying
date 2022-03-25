@@ -8,6 +8,7 @@ const Navbar = ({setSelectedTab}) => {
       <nav>
         <ul>
           <li><button onClick={() => setSelectedTab('party')}>Party</button></li>
+          <li><button onClick={() => setSelectedTab('inventory')}>Inventory</button></li>
           <li><button onClick={() => setSelectedTab('combat')}>Combat</button></li>
           <li><button onClick={() => setSelectedTab('notes')}>Notes</button></li>
           <li><button onClick={() => setSelectedTab('tables')}>Tables</button></li>
