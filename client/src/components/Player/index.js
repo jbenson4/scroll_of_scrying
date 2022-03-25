@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Player.scss';
 import { ReactComponent as BarbarianIcon } from '../images/barbarian_icon.svg';
 import { ReactComponent as DruidIcon } from '../images/druid_icon.svg';
@@ -6,7 +6,10 @@ import { ReactComponent as FighterIcon } from '../images/fighter_icon.svg';
 import { ReactComponent as PaladinIcon } from '../images/paladin_icon.svg';
 import { ReactComponent as RangerIcon } from '../images/ranger_icon.svg';
 import { ReactComponent as WizardIcon } from '../images/wizard_icon.svg';
-import Condition from '../Condition';
+import Condition from './Condition';
+import UseVisualMode from '../../hooks/UseVisualMode';
+import axios from 'axios'
+import Edit from './Edit';
 
 const getClassIcon = (className) => {
   const classIcons =  {
@@ -20,38 +23,52 @@ const getClassIcon = (className) => {
   return classIcons[className];
 }
 
+
+
 const Player = (props) => {
-  const { name, race, dnd_class, stats, condition_id, level, conditions } = props;
+  const EMPTY = "EMPTY";
+  const EDIT = "EDIT";
+  const SHOW = "SHOW";
+  const { id: playerId, name, dnd_class, stats, level } = props;
+  const [conditions, setConditions] = useState([]);
+  const { mode, transition, back } = UseVisualMode(
+    EMPTY
+    )
+    
+    const onEdit = () => {
+      transition(EDIT);
+    }
+
+    const onShow = () => {
+      transition(SHOW)
+    }
+    
+  useEffect(() => {
+      axios.get(`players/conditions/${playerId}`)
+      .then(res => {
+        if (res.data !== '') setConditions(res.data);
+      });
+      return () => {
+          setConditions();
+        }
+  }, []);
 
   return (
     <article className="Player">
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>STR</th>
-            <th>DEX</th>
-            <th>CON</th>
-            <th>INT</th>
-            <th>WIS</th>
-            <th>CHA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{stats.strength}</td>
-            <td>{stats.dexterity}</td>
-            <td>{stats.constitution}</td>
-            <td>{stats.intelligence}</td>
-            <td>{stats.wisdom}</td>
-            <td>{stats.charisma}</td>
-          </tr>
-        </tbody>
-      </table>
       <div className="conditions">
         {conditions !== undefined && conditions.map(condition => <Condition key={name + "_" + condition.index} {...condition}/>)}
       </div>
+      <button onClick={onEdit}>Details</button>
+      {mode === EDIT && (
+        <Edit
+        conditions={conditions}
+        setConditions={setConditions}
+        stats={stats}
+        back={back}
+        />
+      )} 
     </article>
   )
 }

@@ -6,6 +6,7 @@ import Party from './components/Party';
 import Dice from './components/Dice';
 import Notes from './components/Notes';
 import Tables from './components/Tables';
+import Inventory from './components/Inventory';
 import PlayerProvider from './providers/PartyProvider';
 import useRollTableData from './hooks/useRollTableData';
 import useElementDetails from './hooks/useElementDetails';
