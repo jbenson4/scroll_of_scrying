@@ -17,6 +17,7 @@ function App() {
   const { details, getDetails, showModal } = useElementDetails();
   const TABS = {
     'party': <Party />,
+    'inventory': <Inventory />,
     'combat': <Dice />,
     'notes': <Notes />,
     'tables': <Tables
