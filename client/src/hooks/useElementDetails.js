@@ -10,12 +10,7 @@ export default function useElementDetails() {
     data: {}
   });
 
-  // const setContext = (event) => {
-  //   const uri = kebabcase(event.target.innerText);
-  //   setCategory(uri);
-  // };
-
-  const showModal = () => {
+  const hideModal = () => {
     setDetails((prev) => ({
       ...prev,
       show: !details.show
@@ -23,22 +18,21 @@ export default function useElementDetails() {
   };
   
   const getDetails = (event) => {
-    showModal()
     const uriCategory = event.target.id;
     // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
     const name = event.target.innerText.replace('Form', '');
     // Format name variable to the required kebab case for DnD API
     const index = kebabcase(name);
     axios.get(`https://www.dnd5eapi.co/api/${uriCategory}/${index}`)
-      .then((res) => {
-        console.log(res.data)
-        setDetails((prev) => ({
-          ...prev,
-          data: res.data
+    .then((res) => {
+      setDetails((prev) => ({
+        ...prev,
+        data: res.data,
+        show: !details.show
         }));
         // alert(res.data.name)
       })
   }
 
-  return { details, getDetails, showModal };
+  return { details, getDetails, hideModal };
 }
