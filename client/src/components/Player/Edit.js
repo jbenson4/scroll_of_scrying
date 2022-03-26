@@ -20,9 +20,23 @@ const options = [
 
 ]
 
+
+
 const Edit = (props) => {
-  const { back, conditionsProp, stats } = props;
-  const [conditions, setConditions] = useState(props.conditions, []);
+  const { back, stats, conditions, setConditions, PlayerId } = props;
+  
+  const parseConditions = (conditions) => {
+    const parsedConds = conditions.map(condition =>{return {label:`${condition.name}`, value:`${condition.index}`}});
+    return parsedConds;
+  }
+  
+  function updateConditions(prevConditions, newConditions, PlayerId) {
+    const conditionsToPush = newConditions.filter(condition => {
+      return !prevConditions.has(condition);
+    })
+    console.log(PlayerId, conditionsToPush);
+  }
+
   return (
     
     <div>
@@ -49,7 +63,7 @@ const Edit = (props) => {
         </tbody>
       </table>
       <form>
-        <Select options={options} isMulti/>
+        <Select options={options} isMulti defaultValue={ parseConditions(conditions) }/>
         <button onClick={back}>cancel</button>
         <button onClick={back}>submit</button>
       </form>

@@ -28,7 +28,6 @@ const getClassIcon = (className) => {
 const Player = (props) => {
   const EMPTY = "EMPTY";
   const EDIT = "EDIT";
-  const SHOW = "SHOW";
   const { id: playerId, name, dnd_class, stats, level } = props;
   const [conditions, setConditions] = useState([]);
   const { mode, transition, back } = UseVisualMode(
@@ -38,19 +37,12 @@ const Player = (props) => {
     const onEdit = () => {
       transition(EDIT);
     }
-
-    const onShow = () => {
-      transition(SHOW)
-    }
     
   useEffect(() => {
       axios.get(`players/conditions/${playerId}`)
       .then(res => {
         if (res.data !== '') setConditions(res.data);
       });
-      return () => {
-          setConditions();
-        }
   }, []);
 
   return (
@@ -67,6 +59,7 @@ const Player = (props) => {
         setConditions={setConditions}
         stats={stats}
         back={back}
+        playerId={playerId}
         />
       )} 
     </article>
