@@ -14,7 +14,7 @@ import Modal from './components/Modal';
 
 function App() {
   const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
-  const { details, getDetails, showModal } = useElementDetails();
+  const { details, getDetails, hideModal } = useElementDetails();
   const TABS = {
     'party': <Party />,
     'inventory': <Inventory 
@@ -29,7 +29,7 @@ function App() {
       setTableLength={setTableLength}
       categoryItems={categoryItems}
       getDetails={getDetails}
-      showModal={showModal}
+      hideModal={hideModal}
     />
   }
 
@@ -40,7 +40,7 @@ function App() {
         <Header />
         <Navbar setSelectedTab={setSelectedTab} setCategory={setCategory} />
         <Dice />
-        <Modal show={details.show} details={details.data} showModal={showModal} category={category.index} />
+        <Modal show={details.show} details={details.data} hideModal={hideModal} category={category.index} />
         <section>
         {TABS[selectedTab]}
         </section>

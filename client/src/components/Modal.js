@@ -7,7 +7,7 @@ const Modal = (props) => {
   }
   return (
     <div className="modal-main" id="modal" onClick={() => {
-      props.showModal();
+      props.hideModal();
     }}>
       {props.show && props.category === 'monsters' && 
       <div className="content">
