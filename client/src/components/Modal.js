@@ -5,6 +5,14 @@ const Modal = (props) => {
   const descItems = (arr) => {
     return arr.map((element) => <li key={element}>{element}</li>)
   }
+
+  const formatObject = (obj) => {
+    const sensesArray = [];
+    for (const [key, value] of Object.entries(obj)) {
+      sensesArray.push(<li>{key}: {value}</li>);
+    }
+    return sensesArray;
+  }
   return (
     <div className="modal-main" id="modal" onClick={() => {
       props.hideModal();
@@ -18,7 +26,7 @@ const Modal = (props) => {
         <p>Alignment: {props.details.alignment}</p>
         <p>Armor Class: {props.details.armor_class}</p>
         <p>Hit Dice: {props.details.hit_dice}</p>
-        <p>Senses: {props.details.senses[0]}, {props.details.senses[1]}</p>
+        <ul>Senses: {formatObject(props.details.senses)}</ul>
         <p>XP: {props.details.xp}</p>
         <p>Challenge Rating: {props.details.challenge_rating}</p>
 
