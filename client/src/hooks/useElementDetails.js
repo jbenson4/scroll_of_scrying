@@ -18,10 +18,18 @@ export default function useElementDetails() {
   };
   
   const getDetails = (event) => {
-    const uriCategory = event.target.id;
-    // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
-    const name = event.target.innerText.replace('Form', '');
-    // Format name variable to the required kebab case for DnD API
+    let uriCategory = '';
+    let name = '';
+    // Checks if details are for conditions and formats the API URI variables accordingly
+    if (event.target.parentElement.className === 'condition') {
+      uriCategory = event.target.parentElement.className + 's';
+      name = event.target.parentElement.id;
+    } else {
+      uriCategory = event.target.id;
+      // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
+      name = event.target.innerText//.replace('Form', '');
+      // Format name variable to the required kebab case for DnD API
+    }
     const index = kebabcase(name);
     axios.get(`https://www.dnd5eapi.co/api/${uriCategory}/${index}`)
     .then((res) => {
@@ -30,7 +38,6 @@ export default function useElementDetails() {
         data: res.data,
         show: !details.show
         }));
-        // alert(res.data.name)
       })
   }
 
