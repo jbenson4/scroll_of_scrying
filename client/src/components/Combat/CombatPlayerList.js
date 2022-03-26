@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import CombatPlayer from "./CombatPlayer";
+import { DiceRoll } from '@dice-roller/rpg-dice-roller';
 import './CombatPlayerList.scss'
 import axios from 'axios';
 import Select from 'react-select';
@@ -15,7 +16,7 @@ function CombatPlayerList (props) {
   const [dexterity, setDexterity] = useState('');
   const [dnd_class, setDnDClass] = useState('');
   const [playerData, setPlayerData] = useState(state.players);
-
+  const [id, setID] = useState(0);
   //monster ======================================================
   useEffect(() => {
     axios.get(`https://www.dnd5eapi.co/api/monsters/`)
@@ -23,6 +24,7 @@ function CombatPlayerList (props) {
   }, []);
 
   const changeInput = (res) => {
+    setID(playerData.length + 1)
     setDnDClass('monster')
     setName(res.data.name)
     setHp(res.data.hit_points)
@@ -52,7 +54,76 @@ function CombatPlayerList (props) {
   }
   
 //==========================================================================
- 
+function dexToMod (dex) {
+  switch(dex) {
+    case 1:
+      return -5
+      break;
+    case 2:
+    case 3:
+      return -4
+      break;
+    case 4:
+    case 5:
+      return -3
+      break;
+    case 6:
+    case 7:
+      return -2
+      break;
+    case 8:
+    case 9:
+      return -1
+      break;
+    case 10:
+    case 11:
+      return 0
+      break;
+    case 12:
+    case 13:
+      return 1
+      break;
+    case 14:
+    case 15:
+      return 2
+      break;
+    case 16:
+    case 17:
+      return 3
+      break;
+    case 18:
+    case 19:
+      return 4
+      break;
+    case 20:
+    case 21:
+      return 5
+      break;
+    case 22:
+    case 23:
+      return 6
+      break;
+    case 24:
+    case 25:
+      return 7
+      break;
+    case 26:
+    case 27:
+      return 8
+      break;
+    case 28:
+    case 29:
+      return 9
+      break;
+    case 30:
+      return 10
+      break;
+    default:
+      console.log('dexless');
+      break;
+  }
+   
+}
   const reset = () => {
     setDnDClass('')
     setName("")
@@ -63,20 +134,30 @@ function CombatPlayerList (props) {
   function validate () {
 
       let result = {
+        id,
         dnd_class,
         name,
         stats: {
-          hp,
-          dexterity: dexterity
+          hp: Number(hp),
+          dexterity: Number(dexterity)
         }
       };
       setPlayerData([...playerData, result]);
       reset();
-    
   }  
   
-  const newPlayerData = playerData.sort(function(a,b) {return b.stats.dexterity-a.stats.dexterity});
-  const parsedPlayers = newPlayerData.map(player => <CombatPlayer key={player.name} {...player}/>)
+  const newPlayerData = playerData.sort(function(a,b) {return b.stats.initiative-a.stats.initiative});
+  const parsedPlayers = newPlayerData.map(player => <CombatPlayer id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
+  
+  function ClickAllBtn () {
+
+    let result = 0
+    for (let i = 0; i < newPlayerData.length; i++) {
+      result = new DiceRoll ('d20')
+      playerData[i].stats.initiative = (result.total + dexToMod(playerData[i].stats.dexterity))
+    }
+    setPlayerData([...playerData])
+  };
 
 return (
   <div className="CombatList">
@@ -106,6 +187,8 @@ return (
         dexterity='dexterity'
         type='number'
         placeholder="enter your dexterity"
+        min={1}
+        max={30}
         value={dexterity}
         onChange= {e => setDexterity(e.target.value)}/>
       </form>
@@ -118,7 +201,7 @@ return (
         <button onClick={validate}>Create</button>
         <button onClick={reset}>Clear</button>
       </section>
-      
+      <button onClick={ClickAllBtn}>Roll initiative</button>
     {state.players !== undefined && parsedPlayers}
   </div>
 )
