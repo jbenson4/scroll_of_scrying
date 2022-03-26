@@ -3,7 +3,7 @@ import './Modal.scss';
 
 const Modal = (props) => {
   const descItems = (arr) => {
-    return arr.map((element) => <li>{element}</li>)
+    return arr.map((element) => <li key={element}>{element}</li>)
   }
   return (
     <div className="modal-main" id="modal" onClick={() => {
@@ -11,16 +11,34 @@ const Modal = (props) => {
     }}>
       {props.show && props.category === 'monsters' && 
       <div className="content">
-        <span>
-        The {props.details.name} has {props.details.hit_points} hit points.
-        
-        </span>
+        <h2>{props.details.name}</h2>
+        <p>HP: {props.details.hit_points}</p>
+        <p>Size: {props.details.size}</p>
+        <p>Type: {props.details.type}</p>
+        <p>Alignment: {props.details.alignment}</p>
+        <p>Armor Class: {props.details.armor_class}</p>
+        <p>Hit Dice: {props.details.hit_dice}</p>
+        <p>Senses: {props.details.senses[0]}, {props.details.senses[1]}</p>
+        <p>XP: {props.details.xp}</p>
+        <p>Challenge Rating: {props.details.challenge_rating}</p>
+
       </div>}
       
       {props.show && props.category === 'magic-items' &&
       <div className="content">
         <h2>{props.details.name}</h2>
         <span>Category: {props.details.equipment_category.name}</span>
+        <br></br>
+        <span>
+          <ul>
+            {props.details.desc && descItems(props.details.desc)}
+          </ul>
+        </span>
+      </div>}
+
+      {props.show && props.category === 'conditions' &&
+      <div className="content">
+        <h2>{props.details.name}</h2>
         <br></br>
         <span>
           <ul>
