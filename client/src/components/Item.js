@@ -14,8 +14,7 @@ const Item = (props) => {
 
   return (
     <div className="Magic-Item">
-      <h2> { name } </h2>
-      <p>{item !== null && item.desc }</p>
+      <h2 id='magic-items' onClick={props.getDetails}> { name } </h2>
     </div>
   )
 }

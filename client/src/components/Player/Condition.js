@@ -38,9 +38,16 @@ const getConditions = (index) => {
 } 
 
 const Condition = (props) => {
-  const { index } = props;
+  const { index, getDetails, setCategory } = props;
+  const functions = (event) => {
+    getDetails(event);
+    setCategory({
+      data: {},
+      index: 'conditions'
+    });
+  }
   return (
-    <div className="condition">
+    <div className="condition" onClick={functions}>
       {getConditions(index)}
     </div>
   )
