@@ -8,25 +8,41 @@ import Notes from './components/Notes';
 import Tables from './components/Tables';
 import Inventory from './components/Inventory';
 import PlayerProvider from './providers/PartyProvider';
+import useRollTableData from './hooks/useRollTableData';
+import useElementDetails from './hooks/useElementDetails';
+import Modal from './components/Modal';
 import Combat from './components/Combat/Combat.js'
 
-
-const TABS = {
-  'party': <Party />,
-  'inventory': <Inventory />,
-  'combat': <Combat />,
-  'notes': <Notes />,
-  'tables': <Tables />
-}
-
 function App() {
+  const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
+  const { details, getDetails, hideModal } = useElementDetails();
+  const TABS = {
+    'party': <Party getDetails={getDetails} setCategory={setCategory} />,
+    'inventory': <Inventory 
+      getDetails={getDetails}
+    />,
+    'combat': <Combat
+    getDetails={getDetails} />,
+    'notes': <Notes />,
+    'tables': <Tables
+      category={category}
+      setCategory={setCategory}
+      setTableCategory={setTableCategory}
+      setTableLength={setTableLength}
+      categoryItems={categoryItems}
+      getDetails={getDetails}
+      hideModal={hideModal}
+    />
+  }
+
   const [selectedTab, setSelectedTab] = useState('party');
   return (
     <PlayerProvider>
       <div className="App">
         <Header />
-        <Navbar setSelectedTab={setSelectedTab}/>
+        <Navbar setSelectedTab={setSelectedTab} setCategory={setCategory} />
         <Dice />
+        <Modal show={details.show} details={details.data} hideModal={hideModal} category={category.index} />
         <section>
         {TABS[selectedTab]}
         </section>

@@ -5,24 +5,41 @@ import kebabcase from 'lodash.kebabcase';
 
 // Custom hook for handling state between different roll table categories
 export default function useElementDetails() {
-  const [details, setDetails] = useState();
+  const [details, setDetails] = useState({
+    show: false,
+    data: {}
+  });
 
-  // const setContext = (event) => {
-  //   const uri = kebabcase(event.target.innerText);
-  //   setCategory(uri);
-  // };
+  const hideModal = () => {
+    setDetails((prev) => ({
+      ...prev,
+      show: !details.show
+    }));
+  };
   
-  const getDetails = (i) => {
-    // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
-    const name = i.target.innerText.replace('Form', '');
-    // Format name variable to the required kebab case for DnD API
+  const getDetails = (event) => {
+    let uriCategory = '';
+    let name = '';
+    // Checks if details are for conditions and formats the API URI variables accordingly
+    if (event.target.parentElement.className === 'condition') {
+      uriCategory = event.target.parentElement.className + 's';
+      name = event.target.parentElement.id;
+    } else {
+      uriCategory = event.target.id;
+      // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
+      name = event.target.innerText//.replace('Form', '');
+      // Format name variable to the required kebab case for DnD API
+    }
     const index = kebabcase(name);
-    axios.get(`https://www.dnd5eapi.co/api/monsters/${index}`)
-      .then((res) => {
-        setDetails(res.data);
-        alert(res.data.name)
+    axios.get(`https://www.dnd5eapi.co/api/${uriCategory}/${index}`)
+    .then((res) => {
+      setDetails((prev) => ({
+        ...prev,
+        data: res.data,
+        show: !details.show
+        }));
       })
   }
 
-  return { details, getDetails };
+  return { details, getDetails, hideModal };
 }

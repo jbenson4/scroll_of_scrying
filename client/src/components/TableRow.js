@@ -1,15 +1,14 @@
-import axios from 'axios'
-import React from 'react'
+import React, { Fragment } from 'react'
 import useRollTableData from '../hooks/useRollTableData';
 import useElementDetails from '../hooks/useElementDetails';
-import kebabcase from 'lodash.kebabcase';
 
 const TableRow = (props) => {
-  const { category } = useRollTableData();
-  const { details, getDetails } =  useElementDetails();
-
   return (
-    <li>A wild <strong onClick={getDetails}>{props.name}</strong> attacks you!</li>
+    <Fragment>
+      {props.category.index === 'magic-items' && <li>You stumble upon a <strong onClick={props.getDetails} id={'magic-items'}>{props.name}</strong>!</li>}
+      {props.category.index === 'monsters' && <li>A wild <strong onClick={props.getDetails} id={'monsters'}>{props.name}</strong> attacks you!</li>}
+      {props.category.index === 'np-cs' && <li>{props.npc}</li>}
+    </Fragment>
   )
 }
 

@@ -1,14 +1,21 @@
 import React from 'react';
 import './Navbar.scss';
 
-const Navbar = ({setSelectedTab}) => {
+const Navbar = ({setSelectedTab, setCategory}) => {
+  const functions = () => {
+    setSelectedTab('inventory');
+    setCategory({
+      data: {},
+      index: 'magic-items'
+    });
+  };
   return (
     <div className="navbar">
       <span id="party-name">Company of the Yellow Banner</span>
       <nav>
         <ul>
           <li><button onClick={() => setSelectedTab('party')}>Party</button></li>
-          <li><button onClick={() => setSelectedTab('inventory')}>Inventory</button></li>
+          <li><button onClick={() => functions()}>Inventory</button></li>
           <li><button onClick={() => setSelectedTab('combat')}>Combat</button></li>
           <li><button onClick={() => setSelectedTab('notes')}>Notes</button></li>
           <li><button onClick={() => setSelectedTab('tables')}>Tables</button></li>
