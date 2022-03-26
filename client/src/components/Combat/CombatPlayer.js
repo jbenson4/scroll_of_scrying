@@ -27,7 +27,7 @@ const getClassIcon = (className) => {
 const CombatPlayer = (props) => {
 
   const { name, dnd_class, stats} = props
-
+  
   function RollD20 () {
     const roll = new rpgDiceRoller.DiceRoll('d20');
     let result = stats.dexterity + roll.total
