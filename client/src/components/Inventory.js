@@ -12,14 +12,14 @@ const itemsData = [
 
 const parsedItems = itemsData.map(item => <Item key={item.name} {...item}/>)
 
-const Inventory = () => {
+const Inventory = (props) => {
   const { state } = useContext(PartyContext);
 
   return (
     <div>
       <span className='inventoryHeader'>Inventory</span>
       <div className="inventory">
-        { state.items.map(item => <Item key={item.name} {...item}/>) }
+        { state.items.map(item => <Item key={item.name} getDetails={props.getDetails} {...item}/>) }
       </div>
     </div>
   )
