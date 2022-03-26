@@ -39,7 +39,7 @@ const CombatPlayer = (props) => {
     {getClassIcon(dnd_class)}
     <div>
       <h1>{name}</h1>
-      <h4 id="health"> HP: {stats.hp} </h4>
+      <h2 id="health"> HP: {stats.hp} </h2>
     </div>
 
     <div>

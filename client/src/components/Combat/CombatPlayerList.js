@@ -6,8 +6,6 @@ import Select from 'react-select';
 import { PartyContext } from '../../providers/PartyProvider';
 
 
-
-
 function CombatPlayerList (props) {
 
   const { state } = useContext(PartyContext);
@@ -36,7 +34,6 @@ function CombatPlayerList (props) {
     // .then(res => setCMonster(res.data)))
     .then (res => changeInput(res)))
     .catch(err => console.log(err))
- 
   }
   
   function parsedMonster () {
@@ -76,15 +73,11 @@ function CombatPlayerList (props) {
       setPlayerData([...playerData, result]);
       reset();
     
-  }
-  
-  console.log(state.players)
-  
+  }  
   
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.dexterity-a.stats.dexterity});
   const parsedPlayers = newPlayerData.map(player => <CombatPlayer key={player.name} {...player}/>)
-  
-  
+
 return (
   <div className="CombatList">
     <section>
