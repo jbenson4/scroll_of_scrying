@@ -51,7 +51,9 @@ export default function useRollTableData() {
 
         while (items.length < category.tableLength) {
           const randomElement = array[Math.floor(Math.random() * array.length)];
-          items.push(randomElement);
+          if (!items.includes(randomElement)) {
+            items.push(randomElement);
+          }
         }
         
         setCategoryItems(items);
