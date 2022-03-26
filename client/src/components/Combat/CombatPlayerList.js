@@ -76,7 +76,7 @@ function CombatPlayerList (props) {
   }  
   
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.dexterity-a.stats.dexterity});
-  const parsedPlayers = newPlayerData.map(player => <CombatPlayer key={player.name} {...player}/>)
+  const parsedPlayers = newPlayerData.map(player => <CombatPlayer key={player.name} getDetails={props.getDetails} {...player}/>)
 
 return (
   <div className="CombatList">
