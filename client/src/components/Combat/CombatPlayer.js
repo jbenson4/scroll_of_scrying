@@ -26,7 +26,7 @@ const getClassIcon = (className) => {
 
 const CombatPlayer = (props) => {
 
-  const { name, dnd_class, stats} = props
+  const { name, dnd_class, stats, getDetails } = props
   
   function RollD20 () {
     const roll = new rpgDiceRoller.DiceRoll('d20');
@@ -38,7 +38,7 @@ const CombatPlayer = (props) => {
   <article className="combatPlayer">
     {getClassIcon(dnd_class)}
     <div>
-      <h1>{name}</h1>
+      <h1 onClick={getDetails}>{name}</h1>
       <h2 id="health"> HP: {stats.hp} </h2>
     </div>
 
