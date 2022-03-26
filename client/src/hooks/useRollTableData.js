@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import kebabcase from 'lodash.kebabcase';
-import npbff from "npbff";
+import dnd from 'dnd-npc';
+
 
 
 // Custom hook for handling state between different roll table categories
@@ -39,7 +40,7 @@ export default function useRollTableData() {
     if (category.index === 'np-cs') {
     const items = [];
       while (items.length < category.tableLength) {
-        const npc = npbff();
+        const npc = new dnd.npc().generate();
         items.push(npc);
       }
       setCategoryItems(items);
