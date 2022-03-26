@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { ReactComponent as BlindedIcon } from '../images/conditions/blinded.svg';
 import { ReactComponent as CharmedIcon } from '../images/conditions/charmed.svg';
 import { ReactComponent as DeafenedIcon } from '../images/conditions/deafened.svg';
@@ -15,6 +15,7 @@ import { ReactComponent as RestrainedIcon } from '../images/conditions/restraine
 import { ReactComponent as StunnedIcon } from '../images/conditions/stunned.svg';
 import { ReactComponent as UnconciousIcon } from '../images/conditions/unconcious.svg';
 import './Condition.scss';
+import axios from 'axios';
 
 const getConditions = (index) => {
   const conditionIcons = {
@@ -37,18 +38,32 @@ const getConditions = (index) => {
   return conditionIcons[index];
 } 
 
+
 const Condition = (props) => {
-  const { index, getDetails, setCategory } = props;
+  const { index, getDetails, setCategory, playerId, setConditions, conditions } = props;
   const functions = (event) => {
     getDetails(event);
     setCategory({
       data: {},
       index: 'conditions'
     });
+
   }
+  function deleteCondition(index, playerId) {
+    return axios.delete(`/players/conditions/${playerId}/${index}`)
+      .then(res => {
+        if (res.status === 204) {
+          setConditions(conditions.filter(condition => condition.index !== index))
+        }
+      })
+  }
+
   return (
-    <div className="condition" onClick={functions}>
-      {getConditions(index)}
+    <div>
+      <div className="condition" onClick={functions}>
+        {getConditions(index)}
+      </div>
+      <button onClick={deleteCondition(index, playerId)}>X</button>
     </div>
   )
 }

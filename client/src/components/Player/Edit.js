@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 
@@ -28,21 +28,19 @@ const Edit = (props) => {
   
   const parseConditions = (conditions) => {
     const parsedConds = conditions.map(condition => 
-      {return {label:`${condition.name}`, value:`${condition.index}`, description:`${condition.description}`}
+      {return {label:`${condition.name}`, value:`${condition.index}`}
   });
     return parsedConds;
   }
   
-  function updateConditions(options) {
-    setConditions(options.map(option => {
-      return {name: option.label, index: option.value}
-    }))
-    console.log(conditions);
-    console.log(playerId);
+  function handleConditions(condition) {
+    const newConditions = [...conditions, condition]
+    axios.post(`/players/conditions/${playerId}/${condition.index}`)
+    .then(setConditions(newConditions))
   }
 
   return (
-    
+
     <div>
         <table>
         <thead>
@@ -67,9 +65,8 @@ const Edit = (props) => {
         </tbody>
       </table>
       <form>
-        <Select options={options} isMulti defaultValue={ parseConditions(conditions) } onChange={updateConditions}/>
-        <button onClick={back}>cancel</button>
-        <button onClick={back}>submit</button>
+        <Select options={options}  onChange={handleConditions} isClearable={false}/>
+        <button onClick={back}>close</button>
       </form>
     </div>
   )
