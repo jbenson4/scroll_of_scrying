@@ -37,19 +37,12 @@ const Player = (props) => {
     const onEdit = () => {
       transition(EDIT);
     }
-
-    const onShow = () => {
-      transition(SHOW)
-    }
     
   useEffect(() => {
       axios.get(`players/conditions/${playerId}`)
       .then(res => {
         if (res.data !== '') setConditions(res.data);
       });
-      return () => {
-          setConditions();
-        }
   }, []);
 
   return (
@@ -66,6 +59,7 @@ const Player = (props) => {
         setConditions={setConditions}
         stats={stats}
         back={back}
+        playerId={playerId}
         />
       )} 
     </article>
