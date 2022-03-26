@@ -17,17 +17,19 @@ function App() {
   const { details, getDetails, showModal } = useElementDetails();
   const TABS = {
     'party': <Party />,
-    'inventory': <Inventory />,
+    'inventory': <Inventory 
+      getDetails={getDetails}
+    />,
     'combat': <Dice />,
     'notes': <Notes />,
     'tables': <Tables
-    category={category}
-    setCategory={setCategory}
-    setTableCategory={setTableCategory}
-    setTableLength={setTableLength}
-    categoryItems={categoryItems}
-    getDetails={getDetails}
-    showModal={showModal}
+      category={category}
+      setCategory={setCategory}
+      setTableCategory={setTableCategory}
+      setTableLength={setTableLength}
+      categoryItems={categoryItems}
+      getDetails={getDetails}
+      showModal={showModal}
     />
   }
 
@@ -36,7 +38,7 @@ function App() {
     <PlayerProvider>
       <div className="App">
         <Header />
-        <Navbar setSelectedTab={setSelectedTab}/>
+        <Navbar setSelectedTab={setSelectedTab} setCategory={setCategory} />
         <Dice />
         <Modal show={details.show} details={details.data} showModal={showModal} category={category.index} />
         <section>
