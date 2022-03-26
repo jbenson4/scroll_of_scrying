@@ -9,7 +9,7 @@
 
 .modal-main {
   position:fixed;
-  background: white;
+  background: #ccc1a0;
   width: 80%;
   height: auto;
   top:50%;
@@ -23,4 +23,12 @@
 
 .display-none {
   display: none;
+}
+
+.content {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
 }
