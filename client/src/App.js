@@ -16,7 +16,7 @@ function App() {
   const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
   const { details, getDetails, hideModal } = useElementDetails();
   const TABS = {
-    'party': <Party />,
+    'party': <Party getDetails={getDetails} setCategory={setCategory} />,
     'inventory': <Inventory 
       getDetails={getDetails}
     />,

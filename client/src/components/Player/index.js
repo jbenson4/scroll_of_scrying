@@ -29,12 +29,11 @@ const Player = (props) => {
   const EMPTY = "EMPTY";
   const EDIT = "EDIT";
   const SHOW = "SHOW";
-  const { id: playerId, name, dnd_class, stats, level } = props;
+  const { id: playerId, name, dnd_class, stats, level, getDetails, setCategory } = props;
   const [conditions, setConditions] = useState([]);
   const { mode, transition, back } = UseVisualMode(
     EMPTY
     )
-    
     const onEdit = () => {
       transition(EDIT);
     }
@@ -58,7 +57,7 @@ const Player = (props) => {
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
       <div className="conditions">
-        {conditions !== undefined && conditions.map(condition => <Condition key={name + "_" + condition.index} {...condition}/>)}
+        {conditions !== undefined && conditions.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} setCategory={setCategory} {...condition}/>)}
       </div>
       <button onClick={onEdit}>Details</button>
       {mode === EDIT && (
