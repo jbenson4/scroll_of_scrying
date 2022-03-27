@@ -25,7 +25,7 @@ const options = [
 
 const Edit = (props) => {
   const { back, stats, conditions, setConditions, playerId } = props;
-  
+
   const parseConditions = (conditions) => {
     const parsedConds = conditions.map(condition => 
       {return {label:`${condition.name}`, value:`${condition.index}`}
@@ -34,7 +34,7 @@ const Edit = (props) => {
   }
   
   function handleConditions(condition) {
-    const newConditions = [...conditions, condition]
+    const newConditions = [...conditions, {name: condition.label, index: condition.value}]
     axios.post(`/players/conditions/${playerId}/${condition.index}`)
     .then(setConditions(newConditions))
   }
