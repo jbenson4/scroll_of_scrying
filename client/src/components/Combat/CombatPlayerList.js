@@ -147,7 +147,7 @@ function dexToMod (dex) {
   }  
   
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.initiative-a.stats.initiative});
-  const parsedPlayers = newPlayerData.map(player => <CombatPlayer id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
+  const parsedPlayers = newPlayerData.map(player => <CombatPlayer onDelete={onDelete} id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
   
   function ClickAllBtn () {
 
@@ -159,11 +159,22 @@ function dexToMod (dex) {
     setPlayerData([...playerData])
   };
 
+  function onDelete (arrID) {
+    for (var i = 0; i < playerData.length; i++)
+    {
+      if (playerData[i].id === arrID) {
+        playerData.splice(i,1)
+      }
+    }
+    setPlayerData([...playerData])
+  }
+
 return (
   <div className="CombatList">
     <section>
       <h3>Create Your Own Character</h3>
       <form onSubmit={e => e.preventDefault()}>
+        <h4>Class</h4>
         <input
         dnd_class='dnd_class'
         type='text'
@@ -171,18 +182,21 @@ return (
         value={dnd_class}
         onChange= {e => setDnDClass(e.target.value)}
         />
+        <h4>Name</h4>
         <input 
         name="name"
         type='text'
         placeholder="enter your name"
         value={name}
         onChange= {e => setName(e.target.value)}/>
+        <h4>Health</h4>
         <input 
         hp='hp'
         type='number'
         placeholder="enter your health"
         value={hp}
         onChange= {e => setHp(e.target.value)}/>
+        <h4>Dex</h4>
         <input
         dexterity='dexterity'
         type='number'

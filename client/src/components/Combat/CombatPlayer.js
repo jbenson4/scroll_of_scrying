@@ -25,7 +25,7 @@ const getClassIcon = (className) => {
 
 const CombatPlayer = (props) => {
 
-  const { name, dnd_class, stats, getDetails, id} = props
+  const { name, dnd_class, stats, getDetails, id, onDelete} = props
   
   function dexToMod (dex) {
     switch(dex) {
@@ -98,8 +98,12 @@ const CombatPlayer = (props) => {
      
   }
 
+  function destroy () {
+    onDelete(id);
+  }
+
   return (
-  <article className="combatPlayer">
+  <article className="combatPlayer" id={id}>
     {getClassIcon(dnd_class)}
     <div>
       <h1 onClick={getDetails}>{name}</h1>
@@ -107,7 +111,7 @@ const CombatPlayer = (props) => {
     </div>
 
     <div>
-    <button>X</button>
+    <button id={id} onClick={destroy}>X</button>
       <h4 id='dexterity' > Initiative: {stats.initiative} </h4>
       <h4>Dex Modifier: {dexToMod(stats.dexterity)}</h4>
     </div>
