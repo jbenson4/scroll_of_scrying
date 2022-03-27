@@ -7,7 +7,8 @@ export default function PartyProvider(props) {
   const [state, setState] = useState({
     players: [],
     items: [],
-    conditions: []
+    conditions: [],
+    monsters: []
   })
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function PartyProvider(props) {
     ]).then((all) => {
       setState(prev => ({...prev, players: all[0].data, 
         items: all[1].data,
-        conditions: all[2].data
+        conditions: all[2].data,
       }));
     })
   }, []);

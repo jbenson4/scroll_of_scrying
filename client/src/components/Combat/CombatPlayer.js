@@ -98,7 +98,7 @@ const CombatPlayer = (props) => {
      
   }
 
-  function destroy () {
+  function destroy (id) {
     onDelete(id);
   }
 
@@ -127,7 +127,7 @@ const CombatPlayer = (props) => {
     </div>
 
     <div>
-    <button id={id} onClick={destroy}>X</button>
+    <button id={id} onClick={() => destroy(id)}>X</button>
       <h4 id='dexterity' > Initiative: {stats.initiative} </h4>
       <h4>Dex Modifier: {dexToMod(stats.dexterity)}</h4>
     </div>

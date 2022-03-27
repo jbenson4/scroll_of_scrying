@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './App.scss';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
@@ -7,13 +7,14 @@ import Dice from './components/Dice';
 import Notes from './components/Notes';
 import Tables from './components/Tables';
 import Inventory from './components/Inventory';
-import PlayerProvider from './providers/PartyProvider';
 import useRollTableData from './hooks/useRollTableData';
 import useElementDetails from './hooks/useElementDetails';
 import Modal from './components/Modal';
 import Combat from './components/Combat/Combat.js'
+import { PartyContext } from './providers/PartyProvider';
 
 function App() {
+  const { state, setState } = useContext(PartyContext);
   const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
   const { details, getDetails, hideModal } = useElementDetails();
   const TABS = {
@@ -22,7 +23,9 @@ function App() {
       getDetails={getDetails}
     />,
     'combat': <Combat
-    getDetails={getDetails} />,
+    getDetails={getDetails}
+    players={state.players}
+    />,
     'notes': <Notes />,
     'tables': <Tables
       category={category}
@@ -34,10 +37,9 @@ function App() {
       hideModal={hideModal}
     />
   }
-
+  
   const [selectedTab, setSelectedTab] = useState('party');
   return (
-    <PlayerProvider>
       <div className="App">
         <Header />
         <Navbar setSelectedTab={setSelectedTab} setCategory={setCategory} />
@@ -47,7 +49,6 @@ function App() {
         {TABS[selectedTab]}
         </section>
       </div>
-    </PlayerProvider>
   );
 }
 

@@ -8,15 +8,15 @@ import { PartyContext } from '../../providers/PartyProvider';
 
 
 function CombatPlayerList (props) {
-
+  
   //states
-  const { state } = useContext(PartyContext);
+  const { state, setState } = useContext(PartyContext);
   const [monster, setMonster] = useState(null);
   const [name, setName] = useState("");
   const [hp, setHp] = useState("");
   const [dexterity, setDexterity] = useState('');
   const [dnd_class, setDnDClass] = useState('');
-  const [playerData, setPlayerData] = useState(state.players);
+  const [playerData, setPlayerData] = useState(newArr() || []);
   const [id, setID] = useState(0);
 
   //monster ======================================================
@@ -149,36 +149,44 @@ function CombatPlayerList (props) {
         id,
         dnd_class,
         name,
-        stats: {
+        stats: {  
           hp: Number(hp),
           dexterity: Number(dexterity)
         }
       };
+      setState({...state, monsters:[...state.monsters, result]})
       setPlayerData([...playerData, result]);
       reset();
   }  
   
   //sorts players by initiative, and render them through CombatPlayer
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.initiative-a.stats.initiative});
-  const parsedPlayers = newPlayerData.map(player => <CombatPlayer changeHealth={changeHealth} onDelete={onDelete} id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
+  const parsedPlayers = newPlayerData.map(player => <CombatPlayer changeHealth={changeHealth} onDelete={onDelete} id={playerData.id} getDetails={props.getDetails} key={player.name} monsters={state.monsters} {...player}/>)
   
   //Rolls a D20 dice with the dex modifier for all players in playerData and add initiative to each players' stats
   function ClickAllBtn () {
 
     let result = 0
-    for (let i = 0; i < newPlayerData.length; i++) {
+    if (state.monsters.length > 0) {
+      for (let i = 0; i < state.monsters.length; i++) {
+        result = new DiceRoll ('d20')
+        state.monsters[i].stats.initiative = (result.total + dexToMod(state.monsters[i].stats.dexterity))
+      };
+    }
+    for (let i = 0; i < state.players.length; i++) {
       result = new DiceRoll ('d20')
-      playerData[i].stats.initiative = (result.total + dexToMod(playerData[i].stats.dexterity))
+      state.players[i].stats.initiative = (result.total + dexToMod(state.players[i].stats.dexterity))
     }
     setPlayerData([...playerData])
   };
 
   //function to delete a player in playerData
   function onDelete (arrID) {
-    for (var i = 0; i < playerData.length; i++)
+    for (var i = 0; i < state.monsters.length; i++)
     {
-      if (playerData[i].id === arrID) {
-        playerData.splice(i,1)
+      if (state.monsters[i].id === arrID) {
+        playerData.splice(playerData.indexOf(state.monsters[i]),1)
+        state.monsters.splice(state.monsters.indexOf(state.monsters[i]),1)
       }
     }
     setPlayerData([...playerData])
@@ -194,6 +202,17 @@ function CombatPlayerList (props) {
     setPlayerData([...playerData])
   }
 
+  function newArr () {
+    let result = [];
+    
+    for(let player of state.players) {
+      result.push(player)
+    }
+    for (let monster of state.monsters) {
+      result.push(monster)
+    }
+    return result;
+  }
 return (
   <div className="CombatList">
     <section>
