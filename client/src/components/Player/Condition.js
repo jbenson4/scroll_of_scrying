@@ -49,10 +49,9 @@ const Condition = (props) => {
       index: 'conditions'
     });
   }
-
   return (
     <div>
-      <div className="condition" onClick={functions}>
+      <div className="condition" id={index} onClick={(event) => functions(event)}>
         {getConditions(index)}
       </div>
       {/* Add to button onClick={deleteCondition(index, playerId)} */}
