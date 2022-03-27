@@ -43,15 +43,14 @@ const getPartyItems = function (pool) {
 exports.getPartyItems = getPartyItems;
 
 // gets a party's conditions
-const getPartyConditions = function (id, pool) {
+const getPartyConditions = function (pool) {
   return pool
     .query(
       `
-      SELECT conditions.index as condition_index, conditions.name as condition_name, player_id 
+      SELECT conditions.index as index, conditions.name as name, player_id 
       FROM players_conditions
       JOIN conditions ON conditions.id = players_conditions.condition_id;
-    `,
-      [id]
+    `
     )
     .then((response) => {
       if (response.rows[0].length === 0) {
