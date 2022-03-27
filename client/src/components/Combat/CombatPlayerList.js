@@ -160,7 +160,7 @@ function CombatPlayerList (props) {
   
   //sorts players by initiative, and render them through CombatPlayer
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.initiative-a.stats.initiative});
-  const parsedPlayers = newPlayerData.map(player => <CombatPlayer onDelete={onDelete} id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
+  const parsedPlayers = newPlayerData.map(player => <CombatPlayer changeHealth={changeHealth} onDelete={onDelete} id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
   
   //Rolls a D20 dice with the dex modifier for all players in playerData and add initiative to each players' stats
   function ClickAllBtn () {
@@ -179,6 +179,17 @@ function CombatPlayerList (props) {
     {
       if (playerData[i].id === arrID) {
         playerData.splice(i,1)
+      }
+    }
+    setPlayerData([...playerData])
+  }
+
+  //function for change health of each player
+  function changeHealth (arrID, newHealth) {
+    for (var i = 0; i < playerData.length; i++) {
+      if (playerData[i].id === arrID) {
+        playerData[i].stats.hp = newHealth;
+        console.log(document.getElementById('currentHealth').value)
       }
     }
     setPlayerData([...playerData])

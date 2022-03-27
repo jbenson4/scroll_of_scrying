@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './CombatPlayer.scss';
 import { ReactComponent as BarbarianIcon } from '../images/barbarian_icon.svg';
 import { ReactComponent as DruidIcon } from '../images/druid_icon.svg';
@@ -25,8 +25,8 @@ const getClassIcon = (className) => {
 
 const CombatPlayer = (props) => {
 
-  const { name, dnd_class, stats, getDetails, id, onDelete} = props
-  
+  const { name, dnd_class, stats, getDetails, id, onDelete, changeHealth} = props
+  const [newHealth, setHealth] = useState(0);
   function dexToMod (dex) {
     switch(dex) {
       case 1:
@@ -102,12 +102,28 @@ const CombatPlayer = (props) => {
     onDelete(id);
   }
 
+  function Health () {
+    changeHealth(id, newHealth)
+  }
+
+
   return (
   <article className="combatPlayer" id={id}>
     {getClassIcon(dnd_class)}
     <div>
       <h1 onClick={getDetails}>{name}</h1>
       <h2 id="health"> HP: {stats.hp} </h2>
+      <button onClick={Health}>HP EDIT</button>
+      <form onSubmit={e => e.preventDefault()}>
+        <input
+        id="currentHealth"
+        hp='hp'
+        type='number'
+        placeholder="enter your health"
+        value={newHealth}
+        onChange={e=>setHealth(e.target.value)}
+        />
+      </form>
     </div>
 
     <div>
