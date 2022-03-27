@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import { PartyContext } from '../../providers/PartyProvider';
 
 const options = [
   {value:'blinded', label:'Blinded', conditionId: 1},
@@ -24,15 +25,16 @@ const options = [
 
 
 const Edit = (props) => {
-  const { back, stats, conditions, setConditions, playerId } = props;
+  const { back, stats, playerId } = props;
+  const { state, setState } = useContext(PartyContext);
 
   function handleConditions(condition) {
-    if (conditions.some(cond => cond.name === condition.label)) {
+    if (state.conditions.some(cond => (cond.name === condition.label && cond.player_id === playerId))) {
       return
     } else {
-      const newConditions = [...conditions, {name: condition.label, index: condition.value}]
+      const newConditions = [...state.conditions, {name: condition.label, index: condition.value, player_id: playerId}]
       axios.post(`/players/conditions/${playerId}/${condition.value}`)
-      .then(setConditions(newConditions))
+      .then(setState({...state, conditions: newConditions}))
     }
   }
 
