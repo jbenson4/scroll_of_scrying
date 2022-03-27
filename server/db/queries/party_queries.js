@@ -47,7 +47,7 @@ const getPartyConditions = function (pool) {
   return pool
     .query(
       `
-      SELECT conditions.index as condition_index, conditions.name as condition_name, player_id 
+      SELECT conditions.index as index, conditions.name as name, player_id 
       FROM players_conditions
       JOIN conditions ON conditions.id = players_conditions.condition_id;
     `
