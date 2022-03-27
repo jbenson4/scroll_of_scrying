@@ -29,7 +29,7 @@ const getConditions = (index) => {
     invisible: <InvisibleIcon />,
     paralyzed: <ParalyzedIcon />,
     petrified: <PetrifiedIcon />,
-    poisioned: <PoisonedIcon />,
+    poisoned: <PoisonedIcon />,
     prone: <ProneIcon />,
     restrained: <RestrainedIcon />,
     stunned: <StunnedIcon />,
@@ -51,11 +51,6 @@ const Condition = (props) => {
   }
   function deleteCondition(index, playerId) {
     return axios.delete(`/players/conditions/${playerId}/${index}`)
-      .then(res => {
-        if (res.status === 204) {
-          setConditions(conditions.filter(condition => condition.index !== index))
-        }
-      })
   }
 
   return (
@@ -63,6 +58,7 @@ const Condition = (props) => {
       <div className="condition" onClick={functions}>
         {getConditions(index)}
       </div>
+      {/* Add to button onClick={deleteCondition(index, playerId)} */}
       <button onClick={deleteCondition(index, playerId)}>X</button>
     </div>
   )

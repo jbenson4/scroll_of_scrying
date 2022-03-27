@@ -26,17 +26,14 @@ const options = [
 const Edit = (props) => {
   const { back, stats, conditions, setConditions, playerId } = props;
 
-  const parseConditions = (conditions) => {
-    const parsedConds = conditions.map(condition => 
-      {return {label:`${condition.name}`, value:`${condition.index}`}
-  });
-    return parsedConds;
-  }
-  
   function handleConditions(condition) {
-    const newConditions = [...conditions, {name: condition.label, index: condition.value}]
-    axios.post(`/players/conditions/${playerId}/${condition.index}`)
-    .then(setConditions(newConditions))
+    if (conditions.some(cond => cond.name === condition.label)) {
+      return
+    } else {
+      const newConditions = [...conditions, {name: condition.label, index: condition.value}]
+      axios.post(`/players/conditions/${playerId}/${condition.value}`)
+      .then(setConditions(newConditions))
+    }
   }
 
   return (
@@ -64,10 +61,8 @@ const Edit = (props) => {
           </tr>
         </tbody>
       </table>
-      <form>
         <Select options={options}  onChange={handleConditions} isClearable={false}/>
         <button onClick={back}>close</button>
-      </form>
     </div>
   )
 }
