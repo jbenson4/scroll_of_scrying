@@ -25,7 +25,7 @@ export default function useElementDetails() {
       uriCategory = event.target.parentElement.className + 's';
       name = event.target.parentElement.id;
     } else {
-      uriCategory = event.target.id;
+      uriCategory = event.target.id || 'monsters';
       // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
       name = event.target.innerText//.replace('Form', '');
       // Format name variable to the required kebab case for DnD API

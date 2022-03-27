@@ -6,7 +6,7 @@ function Combat (props) {
 
 return(
 <main>
-  <CombatPlayerList getDetails={props.getDetails}/>
+  <CombatPlayerList getDetails={props.getDetails} />
 </main>)
 };
 
