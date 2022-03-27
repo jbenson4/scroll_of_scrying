@@ -2,6 +2,7 @@ import React from 'react'
 import TableRow from './TableRow'
 
 const Tables = (props) => {
+
   return (
     <div>
       <button onClick={props.setTableCategory}>Monsters</button>
@@ -19,7 +20,7 @@ const Tables = (props) => {
       <ol>
 
       {props.categoryItems !== undefined && props.category.index !=='np-cs' && props.categoryItems.map((item) => <TableRow key={item.index} name={item.name} getDetails={props.getDetails} category={props.category} />)}
-      {props.category.index === 'np-cs' && props.categoryItems.map((item) => <TableRow key={item} npc={item} getDetails={props.getDetails} category={props.category} />)}
+      {props.category.index === 'np-cs' && props.categoryItems.map((item) => <TableRow key={item.name} npc={item} getDetails={props.getDetails} category={props.category} />)}
       </ol>
     </div>
   )

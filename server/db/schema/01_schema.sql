@@ -23,8 +23,7 @@ CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
 
   index TEXT,
-  name TEXT,
-  description TEXT
+  name TEXT
 );
 
 -- Recreate conditions Table
@@ -32,8 +31,7 @@ CREATE TABLE conditions (
   id SERIAL PRIMARY KEY NOT NULL,
 
   index TEXT,
-  name TEXT,
-  description TEXT
+  name TEXT
 );
 
 -- Recreate players_conditions Join Table

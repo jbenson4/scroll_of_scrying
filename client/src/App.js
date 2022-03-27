@@ -11,6 +11,7 @@ import PlayerProvider from './providers/PartyProvider';
 import useRollTableData from './hooks/useRollTableData';
 import useElementDetails from './hooks/useElementDetails';
 import Modal from './components/Modal';
+import Combat from './components/Combat/Combat.js'
 
 function App() {
   const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
@@ -20,7 +21,8 @@ function App() {
     'inventory': <Inventory 
       getDetails={getDetails}
     />,
-    'combat': <Dice />,
+    'combat': <Combat
+    getDetails={getDetails} />,
     'notes': <Notes />,
     'tables': <Tables
       category={category}

@@ -2,12 +2,21 @@ import React from 'react';
 import './Navbar.scss';
 
 const Navbar = ({setSelectedTab, setCategory}) => {
-  const functions = () => {
-    setSelectedTab('inventory');
-    setCategory({
-      data: {},
-      index: 'magic-items'
-    });
+  const groupFunctions = (event) => {
+    const tab = event.target.innerText;
+    if (tab === 'Inventory') {
+      setSelectedTab('inventory');
+      setCategory({
+        data: {},
+        index: 'magic-items'
+      });
+    } else if (tab === 'Combat') {
+      setSelectedTab('combat');
+      setCategory({
+        data: {},
+        index: 'monsters'
+      });
+    }
   };
   return (
     <div className="navbar">
@@ -15,8 +24,8 @@ const Navbar = ({setSelectedTab, setCategory}) => {
       <nav>
         <ul>
           <li><button onClick={() => setSelectedTab('party')}>Party</button></li>
-          <li><button onClick={() => functions()}>Inventory</button></li>
-          <li><button onClick={() => setSelectedTab('combat')}>Combat</button></li>
+          <li><button onClick={(event) => groupFunctions(event)}>Inventory</button></li>
+          <li><button onClick={(event) => groupFunctions(event)}>Combat</button></li>
           <li><button onClick={() => setSelectedTab('notes')}>Notes</button></li>
           <li><button onClick={() => setSelectedTab('tables')}>Tables</button></li>
         </ul>

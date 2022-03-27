@@ -16,8 +16,7 @@ const itemHelper = function (db, index) {
         const description = response.data.desc.join(' ');
         const values = [
           response.data.index,
-          response.data.name,
-          description
+          response.data.name
         ];
         addPartyItem(values, db)
           .then((res) => console.log(res))

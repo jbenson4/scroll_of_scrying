@@ -14,6 +14,13 @@ module.exports = (db) => {
       });
   });
 
+  router.get('/conditions', (req, res) => {
+    partyQueries.getPartyConditions(db)
+      .then((data) => {
+        res.send(data);
+      })
+  })
+
   router.get('/items', (req, res) => {
     partyQueries.getPartyItems(db)
       .then((data) => {
