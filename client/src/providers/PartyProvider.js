@@ -24,7 +24,7 @@ export default function PartyProvider(props) {
   }, []);
 
   function deleteCondition(index, playerId) {
-    const newConditions = state.conditions.filter(condition => (condition.index !== index && condition.player_id !== playerId));
+    const newConditions = state.conditions.filter(cond => !(cond.index === index && cond.player_id === playerId));
     return axios.delete(`/players/conditions/${playerId}/${index}`)
       .then(setState(
         {
