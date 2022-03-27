@@ -27,9 +27,9 @@ export default function useElementDetails() {
     } else {
       uriCategory = event.target.id || 'monsters';
       // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
-      name = event.target.innerText//.replace('Form', '');
-      // Format name variable to the required kebab case for DnD API
+      name = event.target.innerText.replace('Form', '');
     }
+    // Format name variable to the required kebab case for DnD API
     const index = kebabcase(name);
     axios.get(`https://www.dnd5eapi.co/api/${uriCategory}/${index}`)
     .then((res) => {
