@@ -45,12 +45,13 @@ const Player = (props) => {
       });
   }, []);
 
+
   return (
     <article className="Player">
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
       <div className="conditions">
-        {conditions !== undefined && conditions.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} setCategory={setCategory} {...condition}/>)}
+        {conditions !== undefined && conditions.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} setCategory={setCategory} playerId={playerId} setConditions={setConditions} conditions={conditions} {...condition}/>)}
       </div>
       <button onClick={onEdit}>Details</button>
       {mode === EDIT && (
