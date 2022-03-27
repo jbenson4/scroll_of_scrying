@@ -22,7 +22,7 @@ export default function useElementDetails() {
     let name = '';
     // Checks if details are for conditions and formats the API URI variables accordingly
     if (event.target.parentElement.className === 'condition') {
-      uriCategory = event.target.parentElement.className + 's';
+      uriCategory = 'conditions';
       name = event.target.parentElement.id;
     } else {
       uriCategory = event.target.id || 'monsters';

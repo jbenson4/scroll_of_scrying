@@ -6,6 +6,16 @@ const addPlayerCondition = function (id, index, pool) {
   RETURNING *;
   `,
     [id, index]
-  );
+  )
+    .then((response) => {
+      if (response.rows[0].length === 0) {
+        return null;
+      } else {
+        return response.rows;
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 };
 exports.addPlayerCondition = addPlayerCondition;

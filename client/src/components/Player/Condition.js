@@ -40,7 +40,7 @@ const getConditions = (index) => {
 } 
 
 const Condition = (props) => {
-  const { index, getDetails, setCategory, playerId } = props;
+  const { index, getDetails, setCategory, player_id } = props;
   const { deleteCondition } = useContext(PartyContext);
   const functions = (event) => {
     getDetails(event);
@@ -49,14 +49,13 @@ const Condition = (props) => {
       index: 'conditions'
     });
   }
-
   return (
     <div>
-      <div className="condition" onClick={functions}>
+      <div className="condition" id={index} onClick={(event) => functions(event)}>
         {getConditions(index)}
       </div>
       {/* Add to button onClick={deleteCondition(index, playerId)} */}
-      <button onClick={() => deleteCondition(index, playerId)}>X</button>
+      <button onClick={() => deleteCondition(index, player_id)}>X</button>
     </div>
   )
 }
