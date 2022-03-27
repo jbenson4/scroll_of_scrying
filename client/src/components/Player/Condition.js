@@ -39,26 +39,15 @@ const getConditions = (index) => {
   return conditionIcons[index];
 } 
 
-
 const Condition = (props) => {
   const { index, getDetails, setCategory, playerId } = props;
-  const { state, setState } = useContext(PartyContext);
+  const { deleteCondition } = useContext(PartyContext);
   const functions = (event) => {
     getDetails(event);
     setCategory({
       data: {},
       index: 'conditions'
     });
-  }
-  function deleteCondition(index, playerId) {
-    // const newConditions = state.conditions.filter(condition => (condition.index !== index && condition.player_id !== playerId));
-    axios.delete(`/players/conditions/${playerId}/${index}`)
-      // .then(setState(
-      //   {
-      //     ...state,
-      //     conditions: newConditions
-      //   }
-      // ))
   }
 
   return (
@@ -67,7 +56,7 @@ const Condition = (props) => {
         {getConditions(index)}
       </div>
       {/* Add to button onClick={deleteCondition(index, playerId)} */}
-      <button onClick={deleteCondition(index, playerId)}>X</button>
+      <button onClick={() => deleteCondition(index, playerId)}>X</button>
     </div>
   )
 }

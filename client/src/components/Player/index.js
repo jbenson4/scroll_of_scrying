@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './Player.scss';
 import { ReactComponent as BarbarianIcon } from '../images/barbarian_icon.svg';
 import { ReactComponent as DruidIcon } from '../images/druid_icon.svg';
@@ -26,10 +26,8 @@ const getClassIcon = (className) => {
 const Player = (props) => {
   const EMPTY = "EMPTY";
   const EDIT = "EDIT";
-  const SHOW = "SHOW";
   const { id: playerId, name, dnd_class, stats, level, getDetails, setCategory, playerCondition } = props;
-  // const [conditions, setConditions] = useState([]);
-  const { state } = useContext(PartyContext);
+  // const { state } = useContext(PartyContext);
   const { mode, transition, back } = UseVisualMode(
     EMPTY
     )
