@@ -9,6 +9,7 @@ import { PartyContext } from '../../providers/PartyProvider';
 
 function CombatPlayerList (props) {
 
+  //states
   const { state } = useContext(PartyContext);
   const [monster, setMonster] = useState(null);
   const [name, setName] = useState("");
@@ -17,12 +18,16 @@ function CombatPlayerList (props) {
   const [dnd_class, setDnDClass] = useState('');
   const [playerData, setPlayerData] = useState(state.players);
   const [id, setID] = useState(0);
+
   //monster ======================================================
+  
+  //grab every monster name from this api
   useEffect(() => {
     axios.get(`https://www.dnd5eapi.co/api/monsters/`)
     .then(res => setMonster([res.data]));
   }, []);
 
+  //based on the data pulled from api, and set it as state
   const changeInput = (res) => {
     setID(playerData.length + 1)
     setDnDClass('monster')
@@ -30,6 +35,8 @@ function CombatPlayerList (props) {
     setHp(res.data.hit_points)
     setDexterity(res.data.dexterity)
   }
+  
+  //the selected name will be pass in here and pull the data from api
   const fetchingMonster = (monName) => {
    
     return (axios.get(`https://www.dnd5eapi.co/api/monsters/${monName}`)
@@ -38,6 +45,7 @@ function CombatPlayerList (props) {
     .catch(err => console.log(err))
   }
   
+  //Create options in drop down-list using react select
   function parsedMonster () {
   
     let options = []
@@ -54,7 +62,8 @@ function CombatPlayerList (props) {
   }
   
 //==========================================================================
-function dexToMod (dex) {
+// change dexterity to modifier for initiative
+  function dexToMod (dex) {
   switch(dex) {
     case 1:
       return -5
@@ -123,7 +132,9 @@ function dexToMod (dex) {
       break;
   }
    
-}
+  }
+
+//resets the input log for name hp dex and class
   const reset = () => {
     setDnDClass('')
     setName("")
@@ -131,6 +142,7 @@ function dexToMod (dex) {
     setDexterity('')
   }
 
+  //adding new chara(object) into playerData array
   function validate () {
 
       let result = {
@@ -146,9 +158,11 @@ function dexToMod (dex) {
       reset();
   }  
   
+  //sorts players by initiative, and render them through CombatPlayer
   const newPlayerData = playerData.sort(function(a,b) {return b.stats.initiative-a.stats.initiative});
   const parsedPlayers = newPlayerData.map(player => <CombatPlayer onDelete={onDelete} id={playerData.id} getDetails={props.getDetails} key={player.name} {...player}/>)
   
+  //Rolls a D20 dice with the dex modifier for all players in playerData and add initiative to each players' stats
   function ClickAllBtn () {
 
     let result = 0
@@ -159,6 +173,7 @@ function dexToMod (dex) {
     setPlayerData([...playerData])
   };
 
+  //function to delete a player in playerData
   function onDelete (arrID) {
     for (var i = 0; i < playerData.length; i++)
     {
