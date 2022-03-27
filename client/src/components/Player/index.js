@@ -35,6 +35,7 @@ const Player = (props) => {
       transition(EDIT);
     }
 
+
   return (
     <article className="Player">
       {getClassIcon(dnd_class)}
