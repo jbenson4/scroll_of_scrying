@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { ReactComponent as BlindedIcon } from '../images/conditions/blinded.svg';
 import { ReactComponent as CharmedIcon } from '../images/conditions/charmed.svg';
 import { ReactComponent as DeafenedIcon } from '../images/conditions/deafened.svg';
@@ -16,6 +16,7 @@ import { ReactComponent as StunnedIcon } from '../images/conditions/stunned.svg'
 import { ReactComponent as UnconciousIcon } from '../images/conditions/unconcious.svg';
 import './Condition.scss';
 import axios from 'axios';
+import { PartyContext } from '../../providers/PartyProvider';
 
 const getConditions = (index) => {
   const conditionIcons = {
@@ -40,17 +41,24 @@ const getConditions = (index) => {
 
 
 const Condition = (props) => {
-  const { index, getDetails, setCategory, playerId, setConditions, conditions } = props;
+  const { index, getDetails, setCategory, playerId } = props;
+  const { state, setState } = useContext(PartyContext);
   const functions = (event) => {
     getDetails(event);
     setCategory({
       data: {},
       index: 'conditions'
     });
-
   }
   function deleteCondition(index, playerId) {
-    return axios.delete(`/players/conditions/${playerId}/${index}`)
+    // const newConditions = state.conditions.filter(condition => (condition.index !== index && condition.player_id !== playerId));
+    axios.delete(`/players/conditions/${playerId}/${index}`)
+      // .then(setState(
+      //   {
+      //     ...state,
+      //     conditions: newConditions
+      //   }
+      // ))
   }
 
   return (

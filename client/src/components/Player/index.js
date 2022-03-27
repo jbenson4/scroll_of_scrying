@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Player.scss';
 import { ReactComponent as BarbarianIcon } from '../images/barbarian_icon.svg';
 import { ReactComponent as DruidIcon } from '../images/druid_icon.svg';
@@ -9,6 +9,7 @@ import { ReactComponent as WizardIcon } from '../images/wizard_icon.svg';
 import Condition from './Condition';
 import UseVisualMode from '../../hooks/UseVisualMode';
 import Edit from './Edit';
+import { PartyContext } from '../../providers/PartyProvider';
 
 const getClassIcon = (className) => {
   const classIcons =  {
@@ -27,7 +28,8 @@ const Player = (props) => {
   const EDIT = "EDIT";
   const SHOW = "SHOW";
   const { id: playerId, name, dnd_class, stats, level, getDetails, setCategory, playerCondition } = props;
-  const [conditions, setConditions] = useState([]);
+  // const [conditions, setConditions] = useState([]);
+  const { state } = useContext(PartyContext);
   const { mode, transition, back } = UseVisualMode(
     EMPTY
     )
@@ -41,13 +43,11 @@ const Player = (props) => {
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
       <div className="conditions">
-        {conditions !== undefined && playerCondition.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} setCategory={setCategory} {...condition} />)}
+        {playerCondition !== undefined && playerCondition.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} setCategory={setCategory} {...condition} />)}
       </div>
       <button onClick={onEdit}>Details</button>
       {mode === EDIT && (
         <Edit
-        conditions={conditions}
-        setConditions={setConditions}
         stats={stats}
         back={back}
         playerId={playerId}
