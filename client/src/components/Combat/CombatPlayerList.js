@@ -201,7 +201,7 @@ function CombatPlayerList (props) {
     }
     setPlayerData([...playerData])
   }
-
+  //function for combining monsters and players array from state
   function newArr () {
     let result = [];
     
