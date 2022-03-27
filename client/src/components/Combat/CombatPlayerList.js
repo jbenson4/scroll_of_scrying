@@ -189,7 +189,6 @@ function CombatPlayerList (props) {
     for (var i = 0; i < playerData.length; i++) {
       if (playerData[i].id === arrID) {
         playerData[i].stats.hp = newHealth;
-        console.log(document.getElementById('currentHealth').value)
       }
     }
     setPlayerData([...playerData])
