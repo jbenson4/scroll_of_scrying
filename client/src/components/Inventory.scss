@@ -1,0 +1,13 @@
+.inventory {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.inventoryHeader {
+  display: block;
+  background-color: black;
+  color: #E8DCB8;
+  font-size: 2rem;
+  text-align: center;
+}

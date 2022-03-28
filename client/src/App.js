@@ -1,10 +1,53 @@
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
+import Party from './components/Party';
+import Dice from './components/Dice';
+import Notes from './components/Notes';
+import Tables from './components/Tables';
+import Inventory from './components/Inventory';
+import PlayerProvider from './providers/PartyProvider';
+import useRollTableData from './hooks/useRollTableData';
+import useElementDetails from './hooks/useElementDetails';
+import Modal from './components/Modal';
+import Combat from './components/Combat/Combat.js'
 
 function App() {
+  const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
+  const { details, getDetails, hideModal } = useElementDetails();
+  const TABS = {
+    'party': <Party getDetails={getDetails} setCategory={setCategory} />,
+    'inventory': <Inventory 
+      getDetails={getDetails}
+    />,
+    'combat': <Combat
+    getDetails={getDetails} />,
+    'notes': <Notes />,
+    'tables': <Tables
+      category={category}
+      setCategory={setCategory}
+      setTableCategory={setTableCategory}
+      setTableLength={setTableLength}
+      categoryItems={categoryItems}
+      getDetails={getDetails}
+      hideModal={hideModal}
+    />
+  }
+
+  const [selectedTab, setSelectedTab] = useState('party');
   return (
-    <div className="App">
-      <h1>Scroll of Scrying</h1>
-    </div>
+    <PlayerProvider>
+      <div className="App">
+        <Header />
+        <Navbar setSelectedTab={setSelectedTab} setCategory={setCategory} />
+        <Dice />
+        <Modal show={details.show} details={details.data} hideModal={hideModal} category={category.index} />
+        <section>
+        {TABS[selectedTab]}
+        </section>
+      </div>
+    </PlayerProvider>
   );
 }
 
