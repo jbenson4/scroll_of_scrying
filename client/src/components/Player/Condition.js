@@ -15,7 +15,6 @@ import { ReactComponent as RestrainedIcon } from '../images/conditions/restraine
 import { ReactComponent as StunnedIcon } from '../images/conditions/stunned.svg';
 import { ReactComponent as UnconciousIcon } from '../images/conditions/unconcious.svg';
 import './Condition.scss';
-import axios from 'axios';
 import { PartyContext } from '../../providers/PartyProvider';
 
 const getConditions = (index) => {
@@ -56,6 +55,7 @@ const Condition = (props) => {
       </div>
       {/* Add to button onClick={deleteCondition(index, playerId)} */}
       <button onClick={() => deleteCondition(index, player_id)}>X</button>
+
     </div>
   )
 }
