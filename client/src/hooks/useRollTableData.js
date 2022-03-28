@@ -3,29 +3,34 @@ import axios from "axios";
 import kebabcase from 'lodash.kebabcase';
 import dnd from 'dnd-npc';
 
-
-
 // Custom hook for handling state between different roll table categories
 export default function useRollTableData() {
-  const [category, setCategory ] = useState({
+  // Category state handler
+  const [category, setCategory] = useState({
     index: '',
     tableLength: 10
   });
-  const [categoryItems, setCategoryItems] = useState([]);
+  const [roll, setRoll] = useState({
+    roll: true
+  })
+  // Table content state handlers
+  const [monsters, setMonsters] = useState([]);
+  const [items, setItems] = useState([]);
+  const [npcs, setNPCs] = useState([]);
 
   const setTableCategory = (event) => {
-    if (event.target.innerText === "Roll Again") {
-      setCategory((prev) => ({
-        ...prev,
-      }));
-    } else {
-      const uri = kebabcase(event.target.innerText);
-      setCategory((prev) => ({
-        ...prev,
-        index: uri,
-      }));
-    }
+    const uri = kebabcase(event.target.innerText);
+    setCategory((prev) => ({
+      ...prev,
+      index: uri,
+    }));
   };
+
+  const rollFunction = () => {
+    setRoll((prev) => ({
+      roll: true
+    }))
+  } 
 
   const setTableLength = (event) => {
     const length = Number(event.target.value);
@@ -35,7 +40,7 @@ export default function useRollTableData() {
     }));
   };
 
-  
+  // API and library calls to generate roll table content
   useEffect(() => {
     if (category.index === 'np-cs') {
     const items = [];
@@ -43,7 +48,7 @@ export default function useRollTableData() {
         const npc = new dnd.npc().generate();
         items.push(npc);
       }
-      setCategoryItems(items);
+      setNPCs(items);
     } else if (category.index !== '') {
       axios.get(`https://www.dnd5eapi.co/api/${category.index}`)
       .then((res) => {
@@ -56,12 +61,11 @@ export default function useRollTableData() {
             items.push(randomElement);
           }
         }
-        
-        setCategoryItems(items);
+        category.index === 'monsters' ? setMonsters(items) : setItems(items);
       })
       .catch((err) => console.log(err))
     }
-  }, [category]);
+  }, [roll]);
 
-  return { category, setCategory, categoryItems, setTableCategory, setTableLength };
+  return { category, setCategory, setTableCategory, setTableLength, monsters, items, npcs, rollFunction };
 }
