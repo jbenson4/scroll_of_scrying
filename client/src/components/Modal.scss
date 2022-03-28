@@ -1,11 +1,21 @@
-.modal {
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 2;
+}
+
+.overlay-active {
   position: fixed;
   top: 0;
   left: 0;
   width:100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 3;
+  z-index: 2;
 }
 
 .modal-main {
@@ -17,6 +27,8 @@
   left:50%;
   transform: translate(-50%,-50%);
   z-index: 3;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .display-block {
@@ -31,6 +43,8 @@
   text-align: center;
 }
 
-ul {
+.content ul {
   list-style: none;
+  align-items: center;
+  padding-left: 0;
 }
