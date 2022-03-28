@@ -15,7 +15,7 @@ import { PartyContext } from './providers/PartyProvider';
 
 function App() {
   const { state, setState } = useContext(PartyContext);
-  const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
+  const { category, setCategory, setTableCategory, setTableLength, monsters, items, npcs, rollFunction } = useRollTableData();
   const { details, getDetails, hideModal } = useElementDetails();
   const TABS = {
     'party': <Party getDetails={getDetails} setCategory={setCategory} />,
@@ -32,9 +32,12 @@ function App() {
       setCategory={setCategory}
       setTableCategory={setTableCategory}
       setTableLength={setTableLength}
-      categoryItems={categoryItems}
       getDetails={getDetails}
       hideModal={hideModal}
+      npcs={npcs}
+      monsters={monsters}
+      items={items}
+      rollFunction={rollFunction}
     />
   }
 
