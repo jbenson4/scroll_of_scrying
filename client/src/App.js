@@ -37,7 +37,9 @@ function App() {
       hideModal={hideModal}
     />
   }
-  
+
+  const overlay = details.show ? 'overlay-active' : 'overlay-inactive';
+
   const [selectedTab, setSelectedTab] = useState('party');
   return (
       <div className="App">
@@ -48,6 +50,7 @@ function App() {
         <section>
         {TABS[selectedTab]}
         </section>
+        <div className={overlay}></div>
       </div>
   );
 }
