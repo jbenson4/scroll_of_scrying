@@ -21,9 +21,9 @@ export default function useElementDetails() {
     let uriCategory = '';
     let name = '';
     // Checks if details are for conditions and formats the API URI variables accordingly
-    if (event.target.parentElement.className === 'condition') {
+    if (event.target.className === 'condition') {
       uriCategory = 'conditions';
-      name = event.target.parentElement.id;
+      name = event.target.id;
     } else {
       uriCategory = event.target.id || 'monsters';
       // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
