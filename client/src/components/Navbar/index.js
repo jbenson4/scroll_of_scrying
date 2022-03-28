@@ -6,16 +6,16 @@ const Navbar = ({setSelectedTab, setCategory}) => {
     const tab = event.target.innerText;
     if (tab === 'Inventory') {
       setSelectedTab('inventory');
-      setCategory({
-        data: {},
+      setCategory((prev) => ({
+        ...prev,
         index: 'magic-items'
-      });
+      }));
     } else if (tab === 'Combat') {
       setSelectedTab('combat');
-      setCategory({
-        data: {},
+      setCategory((prev) => ({
+        ...prev,
         index: 'monsters'
-      });
+      }));
     }
   };
   return (
