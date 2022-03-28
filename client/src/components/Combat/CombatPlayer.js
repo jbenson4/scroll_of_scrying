@@ -113,9 +113,10 @@ const CombatPlayer = (props) => {
     <div>
       <h1 onClick={getDetails}>{name}</h1>
       <h2 id="health"> HP: {stats.hp} </h2>
-      <button onClick={Health}>HP EDIT</button>
+     
       <form onSubmit={e => e.preventDefault()}>
         <input
+        className="newHP"
         id="currentHealth"
         hp='hp'
         type='number'
@@ -124,10 +125,13 @@ const CombatPlayer = (props) => {
         onChange={e=>setHealth(e.target.value)}
         />
       </form>
+      <button className='editHP' onClick={Health}>HP EDIT</button>
+       
+     
     </div>
 
     <div>
-    <button id={id} onClick={() => destroy(id)}>X</button>
+    <button id={id} onClick={() => destroy(id)} className='closeBtn'>DELETE</button>
       <h4 id='dexterity' > Initiative: {stats.initiative} </h4>
       <h4>Dex Modifier: {dexToMod(stats.dexterity)}</h4>
     </div>
