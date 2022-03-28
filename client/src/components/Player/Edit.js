@@ -18,7 +18,7 @@ const options = [
   {value:'prone', label:'Prone', conditionId: 12},
   {value:'restrained', label:'Restrained', conditionId: 13},
   {value: 'stunned', label:'Stunned', conditionId: 14},
-  {value: 'unconcious', label:'Unconcious', conditionId: 15}
+  {value: 'unconscious', label:'Unconscious', conditionId: 15}
 
 ]
 

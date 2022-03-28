@@ -9,8 +9,6 @@ const PlayerList = ({getDetails, setCategory}) => {
   const conditionFilter = (conditions, player) => {
    return conditions.filter(condition => condition.player_id === player.id)
   };
-
-  console.log(state.conditions);
   
   return (
     <div className="PlayerList">

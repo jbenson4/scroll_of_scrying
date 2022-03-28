@@ -13,7 +13,7 @@ import { ReactComponent as PoisonedIcon } from '../images/conditions/poisoned.sv
 import { ReactComponent as ProneIcon} from '../images/conditions/prone.svg';
 import { ReactComponent as RestrainedIcon } from '../images/conditions/restrained.svg';
 import { ReactComponent as StunnedIcon } from '../images/conditions/stunned.svg';
-import { ReactComponent as UnconciousIcon } from '../images/conditions/unconcious.svg';
+import { ReactComponent as UnconsciousIcon } from '../images/conditions/unconscious.svg';
 import './Condition.scss';
 import { PartyContext } from '../../providers/PartyProvider';
 
@@ -33,7 +33,7 @@ const getConditions = (index) => {
     prone: <ProneIcon />,
     restrained: <RestrainedIcon />,
     stunned: <StunnedIcon />,
-    unconcious: <UnconciousIcon />
+    unconscious: <UnconsciousIcon />
   }
   return conditionIcons[index];
 } 
