@@ -39,14 +39,20 @@ module.exports = (db) => {
   router.post('/conditions/:id/:index', (req, res) => {
     const id = Number(req.params.id);
     const index = indexFormatter(req.params.index);
-    playerConditionHelper(id, index, db);
+    playerConditionHelper(id, index, db)
+      .then((data) => {
+        res.send(data);
+      })
   });
 
   // DELETE routes
   router.delete('/conditions/:id/:index', (req, res) => {
     const id = Number(req.params.id);
     const index = indexFormatter(req.params.index);
-    removeCondition(id, index, db);
+    removeCondition(id, index, db)
+      .then((data) => {
+        res.send(data);
+      })
   })
   return router;
 };

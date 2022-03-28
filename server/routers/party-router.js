@@ -31,7 +31,10 @@ module.exports = (db) => {
   // POST routes
   router.post('/items/:index', (req, res) => {
     const index = indexFormatter(req.params.index);
-    itemHelper(db, index);
+    itemHelper(db, index)
+      .then((data) => {
+        res.send(data);
+      })
   })
   
   // DELETE routes
