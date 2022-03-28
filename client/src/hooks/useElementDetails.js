@@ -3,7 +3,7 @@ import axios from "axios";
 import kebabcase from 'lodash.kebabcase';
 
 
-// Custom hook for handling state between different roll table categories
+// Custom hook for handling state of detail modal
 export default function useElementDetails() {
   const [details, setDetails] = useState({
     show: false,
@@ -21,12 +21,12 @@ export default function useElementDetails() {
     let uriCategory = '';
     let name = '';
     // Checks if details are for conditions and formats the API URI variables accordingly
-    if (event.target.parentElement.className === 'condition') {
+    if (event.target.className === 'condition') {
       uriCategory = 'conditions';
-      name = event.target.parentElement.id;
+      name = event.target.id;
     } else {
       uriCategory = event.target.id || 'monsters';
-      // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
+    // Takes click target inner text value and strips "Form" from it to handle edge cases of DnD API URIs (eg. Werebear, Bear Form requires a URI of ./werebear-bear)
       name = event.target.innerText.replace('Form', '');
     }
     // Format name variable to the required kebab case for DnD API

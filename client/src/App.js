@@ -15,7 +15,7 @@ import { PartyContext } from './providers/PartyProvider';
 
 function App() {
   const { state, setState } = useContext(PartyContext);
-  const { category, setCategory, setTableCategory, setTableLength, categoryItems } = useRollTableData();
+  const { category, setCategory, setTableCategory, setTableLength, monsters, items, npcs, rollFunction } = useRollTableData();
   const { details, getDetails, hideModal } = useElementDetails();
   const TABS = {
     'party': <Party getDetails={getDetails} setCategory={setCategory} />,
@@ -32,12 +32,17 @@ function App() {
       setCategory={setCategory}
       setTableCategory={setTableCategory}
       setTableLength={setTableLength}
-      categoryItems={categoryItems}
       getDetails={getDetails}
       hideModal={hideModal}
+      npcs={npcs}
+      monsters={monsters}
+      items={items}
+      rollFunction={rollFunction}
     />
   }
-  
+
+  const overlay = details.show ? 'overlay-active' : 'overlay-inactive';
+
   const [selectedTab, setSelectedTab] = useState('party');
   return (
       <div className="App">
@@ -48,6 +53,7 @@ function App() {
         <section>
         {TABS[selectedTab]}
         </section>
+        <div className={overlay}></div>
       </div>
   );
 }
