@@ -18,6 +18,8 @@ function CombatPlayerList (props) {
   const [dnd_class, setDnDClass] = useState('');
   const [playerData, setPlayerData] = useState(newArr() || []);
   const [id, setID] = useState(0);
+  const [active, setActive] = useState(false);
+  const [error, setError] = useState();
 
   //monster ======================================================
   
@@ -144,7 +146,20 @@ function CombatPlayerList (props) {
 
   //adding new chara(object) into playerData array
   function validate () {
+      if (!name) {
+        setError('Please enter a name');
+        return;
+      } 
+      if(!hp) {
+        setError('Please enter a health');
+        return;
+      }
+      if(!dexterity) {
+        setError('Please enter dex');
+        return;
+      }
 
+      setError('');
       let result = {
         id,
         dnd_class,
@@ -213,10 +228,16 @@ function CombatPlayerList (props) {
     }
     return result;
   }
+
+  function toggleCustom () {
+    setActive(!active)
+  }
 return (
   <div className="CombatList">
-    <section>
+      <button className="addBtn" onClick={toggleCustom}>ADD CUSTOM</button>
+    <section className={active ? 'null' : 'addList'}>
       <h3>Create Your Own Character</h3>
+      <div className="forms">
       <form onSubmit={e => e.preventDefault()}>
         <h4>Class</h4>
         <input
@@ -250,16 +271,18 @@ return (
         value={dexterity}
         onChange= {e => setDexterity(e.target.value)}/>
       </form>
-      </section>
-
+      </div>
       <h3>Pick a Monster</h3>
       {monster !== null && parsedMonster()}
-
+      <section>{error}</section>
       <section>
         <button onClick={validate}>Create</button>
         <button onClick={reset}>Clear</button>
       </section>
-      <button onClick={ClickAllBtn}>Roll initiative</button>
+      </section>
+
+
+      <button className='rollInitiate' onClick={ClickAllBtn}>ROLL INITIATIVE</button>
     {state.players !== undefined && parsedPlayers}
   </div>
 )
