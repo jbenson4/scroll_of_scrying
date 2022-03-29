@@ -89,6 +89,7 @@ function Dice() {
        <div className='displayText'>
        
          <textarea
+         className='diceCollector'
          readOnly
            value={changeArray(dice)}
          />
