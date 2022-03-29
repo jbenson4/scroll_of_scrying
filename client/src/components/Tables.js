@@ -6,26 +6,23 @@ const Tables = (props) => {
 
   return (
     <div>
-      <div className='button-group'>
+      <div className='category-group'>
         <button className='table-category' onClick={props.setTableCategory}>Monsters</button>
         <button className='table-category' onClick={props.setTableCategory}>Magic Items</button>
         <button className='table-category' onClick={props.setTableCategory}>NPCs</button>
-      <br></br>
-      <label htmlFor='roll-length'>Table Length:</label>
-      <br></br>
-      <input id='roll-length' type='number' defaultValue='10' onChange={props.setTableLength}></input>
-      <br></br>
-      <button className='table-category' onClick={props.rollFunction}>Roll</button>
       </div>
-      <br></br>
-      <br></br>
-      <div className='table-rows'>
-        <ol>
-          {props.monsters !== undefined && props.category.index === 'monsters' && props.monsters.map((item) => <TableRow key={item.index} name={item.name} getDetails={props.getDetails} category={props.category} />)}
-          {props.items !== undefined && props.category.index === 'magic-items' && props.items.map((item) => <TableRow key={item.name} name={item.name} getDetails={props.getDetails} category={props.category} />)}
-          {props.npcs !== undefined && props.category.index === 'np-cs' && props.npcs.map((item) => <TableRow key={() => props.npcs.indexOf(item)} npc={item} getDetails={props.getDetails} category={props.category} />)}
-        </ol>
+      <button className='table-category roll' onClick={props.rollFunction}>Roll</button>
+      <div className='table-length'>
+        <label htmlFor='roll-length'>
+          <h4>Table Length</h4>
+        </label>
+        <input id='roll-length' type='number' defaultValue='10' onChange={props.setTableLength}></input>
       </div>
+      <ol className='ol-table table-rows'>
+        {props.monsters !== undefined && props.category.index === 'monsters' && props.monsters.map((item) => <TableRow key={item.index} name={item.name} getDetails={props.getDetails} category={props.category} />)}
+        {props.items !== undefined && props.category.index === 'magic-items' && props.items.map((item) => <TableRow key={item.name} name={item.name} getDetails={props.getDetails} category={props.category} />)}
+        {props.npcs !== undefined && props.category.index === 'np-cs' && props.npcs.map((item) => <TableRow key={() => props.npcs.indexOf(item)} npc={item} getDetails={props.getDetails} category={props.category} />)}
+      </ol>
     </div>
   )
 }
