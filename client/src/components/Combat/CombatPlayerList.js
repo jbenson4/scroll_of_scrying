@@ -6,9 +6,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import { PartyContext } from '../../providers/PartyProvider';
 
-
 function CombatPlayerList (props) {
-  
   //states
   const { state, setState } = useContext(PartyContext);
   const [monster, setMonster] = useState(null);
@@ -58,9 +56,12 @@ function CombatPlayerList (props) {
         label: monster[0].results[i].name }) 
     }
   
-    return(<Select
-      onChange={(value) => fetchingMonster(value.value)}
-      options={options}/>)
+    return(
+      <div style={{width: "80%", marginLeft:"84px"}}>
+        <Select
+        onChange={(value) => fetchingMonster(value.value)}
+        options={options}/>
+      </div>)
   }
   
 //==========================================================================
@@ -142,6 +143,7 @@ function CombatPlayerList (props) {
     setName("")
     setHp("")
     setDexterity('')
+    setError('')
   }
 
   //adding new chara(object) into playerData array
@@ -236,46 +238,63 @@ return (
   <div className="CombatList">
       <button className="addBtn" onClick={toggleCustom}>ADD CUSTOM</button>
     <section className={active ? 'null' : 'addList'}>
-      <h3>Create Your Own Character</h3>
-      <div className="forms">
-      <form onSubmit={e => e.preventDefault()}>
-        <h4>Class</h4>
-        <input
-        dnd_class='dnd_class'
-        type='text'
-        placeholder='enter your class'
-        value={dnd_class}
-        onChange= {e => setDnDClass(e.target.value)}
-        />
-        <h4>Name</h4>
-        <input 
-        name="name"
-        type='text'
-        placeholder="enter your name"
-        value={name}
-        onChange= {e => setName(e.target.value)}/>
-        <h4>Health</h4>
-        <input 
-        hp='hp'
-        type='number'
-        placeholder="enter your health"
-        value={hp}
-        onChange= {e => setHp(e.target.value)}/>
-        <h4>Dex</h4>
-        <input
-        dexterity='dexterity'
-        type='number'
-        placeholder="enter your dexterity"
-        min={1}
-        max={30}
-        value={dexterity}
-        onChange= {e => setDexterity(e.target.value)}/>
-      </form>
+
+      <h3 className="subTitle">Create Your Own Character</h3>
+  <div className="forms">
+    <form onSubmit={e => e.preventDefault()}>
+      
+      <div className="inputAll">
+
+        <div className="inputClass">
+          <h4>Class</h4>
+          <input
+          dnd_class='dnd_class'
+          type='text'
+          placeholder='enter your class'
+          value={dnd_class}
+          onChange= {e => setDnDClass(e.target.value)}
+          />
+        </div>
+
+        <div className="inputHp">
+          <h4>Health</h4>
+          <input 
+          hp='hp'
+          type='number'
+          placeholder="enter your health"
+          value={hp}
+          onChange= {e => setHp(e.target.value)}/>
+        </div>
+        
+        <div className="inputDex">
+          <h4>Dexterity</h4>
+          <input
+          dexterity='dexterity'
+          type='number'
+          placeholder="enter your dexterity"
+          min={1}
+          max={30}
+          value={dexterity}
+          onChange= {e => setDexterity(e.target.value)}/>
+        </div>
       </div>
-      <h3>Pick a Monster</h3>
+
+        <div className="inputName">
+          <h4>Name</h4>
+          <input 
+          name="name"
+          type='text'
+          placeholder="enter your name"
+          value={name}
+          onChange= {e => setName(e.target.value)}/>
+        </div>
+    </form>
+  </div>
+
+      <h3 className="subTitle">Pick a Monster</h3>
       {monster !== null && parsedMonster()}
-      <section>{error}</section>
-      <section>
+      <section className="error">{error}</section>
+      <section className="createNclear">
         <button onClick={validate}>Create</button>
         <button onClick={reset}>Clear</button>
       </section>
