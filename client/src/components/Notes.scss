@@ -1,5 +1,6 @@
 .notes {
   margin: 0 auto;
+  width: 90%;
   fieldset {
     display: flex;
     flex-direction: column;
@@ -18,9 +19,13 @@
   button:hover {
     background-color: #b69e58;
   }
-    textarea {
-      resize: none;
-    }
+  textarea {
+    resize: none;
+  }
+  .notesContainer {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 
 @media screen 
