@@ -47,9 +47,9 @@ function Dice() {
      let roller = new rpgDiceRoller.DiceRoller();
      const rolls = `You rolled : ${roller.roll(`${newDice} + ${modifier}`)}`
      setRollResult(rolls);
-    console.log(modifier)
+    console.log(history.join(""))
      
-     let modHistory = `${roller.output} \n`.slice(",")
+     let modHistory = `${roller.output} \n`
      if (replace) {
        setHistory(() => [...history.slice(0, history.length - 1), modHistory])
      } else {
@@ -96,7 +96,7 @@ function Dice() {
          <textarea
          readOnly
          className={active ? `null` : `history`}
-         value={history}
+         value={history.join("")}
          />
        </div>
 
@@ -118,9 +118,9 @@ function Dice() {
          /> 
 
        <div className='rollingDice'>
-         <button onClick={() => roll(dice)}>ROLL</button>
-         <button onClick={reset}>clear</button>
-         <button onClick={toggleClass}>history</button>
+         <button onClick={() => roll(dice)}>Roll</button>
+         <button onClick={reset}>Clear</button>
+         <button onClick={toggleClass}>History</button>
        </div>
      
      </div>
