@@ -1,4 +1,4 @@
-.button-group {
+.category-group {
   display: flex;
   justify-content: center;
 }
@@ -10,9 +10,29 @@
   padding: 0.1em;
   font-size: 2rem;
   font-variation-settings: "wght" 600;
+  flex-grow: 1;
 }
 
 .table-rows {
   display: flex;
   justify-content: center;
+  list-style-position: inside;
+  flex-direction: column;
+}
+
+.roll {
+  width: 100%;
+}
+
+.table-length {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 3rem;
+}
+
+#roll-length {
+  height: auto;
+  margin: 0rem 2rem;
 }
