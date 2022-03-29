@@ -7,7 +7,7 @@ import dnd from 'dnd-npc';
 export default function useRollTableData() {
   // Category state handler
   const [category, setCategory] = useState({
-    index: '',
+    index: 'conditions',
     tableLength: 10
   });
   const [roll, setRoll] = useState({
