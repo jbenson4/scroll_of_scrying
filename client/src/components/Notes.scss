@@ -4,6 +4,9 @@
   fieldset {
     display: flex;
     flex-direction: column;
+    input {
+      font-size: 22px;
+    }
   }
   button {
     background-color: #2f2f2f;

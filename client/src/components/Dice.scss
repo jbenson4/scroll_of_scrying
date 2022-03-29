@@ -13,6 +13,12 @@
   width: 200px;
 }
 
+textarea {
+  resize: none;
+  font-size: 20px;
+  width: 300px
+}
+
 .dices {
   display: flex;
   justify-content: center;
