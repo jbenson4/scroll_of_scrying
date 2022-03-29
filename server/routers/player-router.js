@@ -40,9 +40,6 @@ module.exports = (db) => {
     const id = Number(req.params.id);
     const index = indexFormatter(req.params.index);
     playerConditionHelper(id, index, db)
-      .then((data) => {
-        res.send(data);
-      })
   });
 
   // DELETE routes

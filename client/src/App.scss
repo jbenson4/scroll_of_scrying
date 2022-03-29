@@ -45,3 +45,28 @@
 path, g, svg {
   pointer-events: none;
 }
+
+input {
+  height: auto;
+  margin: 0rem 2rem;
+  font-size: 1.5rem;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0 0;
+}
+
+textarea {
+  margin: 0rem 2rem;
+  font-size: 1.5rem;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0 0;
+}

@@ -7,11 +7,11 @@ const Tables = (props) => {
   return (
     <div>
       <div className='category-group'>
-        <button className='table-category' onClick={props.setTableCategory}>Monsters</button>
-        <button className='table-category' onClick={props.setTableCategory}>Magic Items</button>
+        <button className='table-category' onClick={props.setTableCategory}>MONSTERS</button>
+        <button className='table-category' onClick={props.setTableCategory}>MAGIC ITEMS</button>
         <button className='table-category' onClick={props.setTableCategory}>NPCs</button>
       </div>
-      <button className='table-category roll' onClick={props.rollFunction}>Roll</button>
+      <button className='table-category roll' onClick={props.rollFunction}>ROLL</button>
       <div className='table-length'>
         <label htmlFor='roll-length'>
           <h4>Table Length</h4>

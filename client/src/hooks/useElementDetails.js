@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import kebabcase from 'lodash.kebabcase';
-
 
 // Custom hook for handling state of detail modal
 export default function useElementDetails() {

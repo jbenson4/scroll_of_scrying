@@ -250,7 +250,7 @@ return (
           <input
           dnd_class='dnd_class'
           type='text'
-          placeholder='enter your class'
+          placeholder='Enter your class'
           value={dnd_class}
           onChange= {e => setDnDClass(e.target.value)}
           />
@@ -261,7 +261,7 @@ return (
           <input 
           hp='hp'
           type='number'
-          placeholder="enter your health"
+          placeholder="Enter your health"
           value={hp}
           onChange= {e => setHp(e.target.value)}/>
         </div>
@@ -271,7 +271,7 @@ return (
           <input
           dexterity='dexterity'
           type='number'
-          placeholder="enter your dexterity"
+          placeholder="Enter your dexterity"
           min={1}
           max={30}
           value={dexterity}
@@ -284,7 +284,7 @@ return (
           <input 
           name="name"
           type='text'
-          placeholder="enter your name"
+          placeholder="Enter your name"
           value={name}
           onChange= {e => setName(e.target.value)}/>
         </div>
