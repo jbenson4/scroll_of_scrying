@@ -57,7 +57,7 @@ function CombatPlayerList (props) {
     }
   
     return(
-      <div style={{width: "80%", marginLeft:"84px"}}>
+      <div style={{marginLeft: "10%", width: '80%'}}>
         <Select
         onChange={(value) => fetchingMonster(value.value)}
         options={options}/>
