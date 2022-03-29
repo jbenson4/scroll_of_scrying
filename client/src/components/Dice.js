@@ -100,7 +100,7 @@ function Dice() {
        </div>
 
       <div className='modifier'>
-        Modifier: <input type='number' id='modifierInput' onKeyUp={modifierNum}></input>
+        Modifier: <input type='number' defaultValue={0} id='modifierInput' onChange={modifierNum}></input>
       </div>
  
        <div className='dices'>
