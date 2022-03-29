@@ -4,3 +4,15 @@
   align-items: center;
   justify-content: center;
 }
+
+@media screen 
+and (min-width: 1024px) {
+  .PlayerList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+  }
+}

@@ -11,3 +11,11 @@
   font-size: 2rem;
   text-align: center;
 }
+@media screen 
+and (min-width: 1024px) {
+  .inventory {
+    font-size: 20px;
+    width: 75%;
+    margin: 0 auto;
+  }
+}
