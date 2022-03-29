@@ -1,0 +1,31 @@
+.notes {
+  margin: 0 auto;
+  fieldset {
+    display: flex;
+    flex-direction: column;
+  }
+  button {
+    background-color: #2f2f2f;
+      color: #E8DCB8;
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 13px 14px;
+      text-decoration: none;
+      border: none;
+    }
+  button:hover {
+    background-color: #b69e58;
+  }
+    textarea {
+      resize: none;
+    }
+}
+
+@media screen 
+and (min-width: 1024px) {
+  .notes {
+    width: 60%;
+  }
+}
