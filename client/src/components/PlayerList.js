@@ -14,7 +14,7 @@ const PlayerList = ({getDetails, setCategory}) => {
     <div className="PlayerList">
     {state.players !== undefined
       && state.conditions !== undefined
-      && state.players.map(player => <Player key={player.name} getDetails={getDetails} playerCondition={conditionFilter(state.conditions, player)} setCategory={setCategory} {...player}/>)}    
+      && state.players.map(player => <Player key={player.name} getDetails={getDetails} playerCondition={conditionFilter(state.conditions, player)} {...player}/>)}    
     </div>
   )
 }

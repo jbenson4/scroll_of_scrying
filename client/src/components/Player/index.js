@@ -24,7 +24,7 @@ const getClassIcon = (className) => {
 const Player = (props) => {
   const EMPTY = "EMPTY";
   const EDIT = "EDIT";
-  const { id: playerId, name, dnd_class, stats, level, getDetails, setCategory, playerCondition } = props;
+  const { id: playerId, name, dnd_class, stats, level, getDetails, playerCondition } = props;
   const { mode, transition, back } = UseVisualMode(
     EMPTY
     )
@@ -38,7 +38,7 @@ const Player = (props) => {
       {getClassIcon(dnd_class)}
       <h1>{name} | lvl {level}</h1>
       <div className="conditions">
-        {playerCondition !== undefined && playerCondition.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} setCategory={setCategory} playerId={playerId} {...condition}/>)}
+        {playerCondition !== undefined && playerCondition.map(condition => <Condition key={name + "_" + condition.index} getDetails={getDetails} playerId={playerId} {...condition}/>)}
       </div>
       <button onClick={onEdit}>Details</button>
       {mode === EDIT && (
