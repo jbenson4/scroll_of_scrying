@@ -1,5 +1,12 @@
 .Magic-Item {
   border: 2px solid black;
-  width: 48vw;
+  width: 48%;
   text-align: center;
+}
+
+@media screen 
+and (min-width: 1024px) {
+  .Magic-Item {
+    width:48%;
+  }
 }

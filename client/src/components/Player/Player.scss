@@ -3,7 +3,7 @@
 
 .Player {
   border: 2px solid black;
-  width: 98vw;
+  width: 90%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
     margin-right: auto;
   }
   .dndClass {
-    width: 10vw;
+    width: 3em;
     &.barbarian {
       fill: darkred;
     }
@@ -41,5 +41,28 @@
   }
   &:hover {
     background-color: darken($background, 5%);
+  }
+  button {
+    background-color: #2f2f2f;
+      color: #E8DCB8;
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 13px 14px;
+      text-decoration: none;
+      border: none;
+    }
+  button:hover {
+    background-color: #b69e58;
+  }
+}
+
+@media screen 
+and (min-width: 1024px) {
+  .Player {
+    height: 20em;
+    font-size: 20px;
+    width: 33%;
   }
 }
