@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { ReactComponent as BlindedIcon } from '../images/conditions/blinded.svg';
 import { ReactComponent as CharmedIcon } from '../images/conditions/charmed.svg';
 import { ReactComponent as DeafenedIcon } from '../images/conditions/deafened.svg';
@@ -39,18 +39,11 @@ const getConditions = (index) => {
 } 
 
 const Condition = (props) => {
-  const { index, getDetails, setCategory, player_id } = props;
+  const { index, getDetails, player_id } = props;
   const { deleteCondition } = useContext(PartyContext);
-  const functions = (event) => {
-    getDetails(event);
-    setCategory({
-      data: {},
-      index: 'conditions'
-    });
-  }
   return (
     <div>
-      <div className="condition" id={index} onClick={(event) => functions(event)}>
+      <div className="condition" id={index} onClick={(event) => getDetails(event)}>
         {getConditions(index)}
       </div>
       {/* Add to button onClick={deleteCondition(index, playerId)} */}
