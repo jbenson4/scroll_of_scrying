@@ -110,10 +110,9 @@ const CombatPlayer = (props) => {
   return (
   <article className="combatPlayer" id={id}>
     {getClassIcon(dnd_class)}
-    <div>
+    <div className="middle">
       <h1 onClick={getDetails}>{name}</h1>
       <h2 id="health"> HP: {stats.hp} </h2>
-     
       <form onSubmit={e => e.preventDefault()}>
         <input
         className="newHP"
@@ -126,14 +125,12 @@ const CombatPlayer = (props) => {
         />
       </form>
       <button className='editHP' onClick={Health}>HP EDIT</button>
-       
-     
     </div>
 
-    <div>
+    <div className="right">
     <button id={id} onClick={() => destroy(id)} className='closeBtn'>DELETE</button>
-      <h4 id='dexterity' > Initiative: {stats.initiative} </h4>
-      <h4>Dex Modifier: {dexToMod(stats.dexterity)}</h4>
+      <h4 id='init'> Initiative: {stats.initiative} </h4>
+      <h4 id='dex'>Dex Modifier: {dexToMod(stats.dexterity)}</h4>
     </div>
     
   </article>
