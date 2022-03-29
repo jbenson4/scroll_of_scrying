@@ -13,7 +13,6 @@ const Notes = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
-    console.log(formData);
   }
 
   const handleNoteSubmit = (e) => {
@@ -35,7 +34,7 @@ const Notes = () => {
           <label htmlFor="date">Date</label>
           <input type="date" name="date" onChange={handleChange}></input>
           <label htmlFor="content">Content</label>
-          <textarea rows='20' cols='75' name="content" onChange={handleChange}></textarea><br/>
+          <textarea rows='10' cols='75' name="content" onChange={handleChange}></textarea><br/>
           <button type="submit">Submit</button>
         </fieldset>
       </form>
