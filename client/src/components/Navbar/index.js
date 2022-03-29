@@ -16,6 +16,12 @@ const Navbar = ({setSelectedTab, setCategory}) => {
         ...prev,
         index: 'monsters'
       }));
+    } else if (tab === 'Party') {
+      setSelectedTab('party');
+      setCategory((prev) => ({
+        ...prev,
+        index: 'conditions'
+      }));
     }
   };
   return (
@@ -23,7 +29,7 @@ const Navbar = ({setSelectedTab, setCategory}) => {
       <span id="party-name">Company of the Yellow Banner</span>
       <nav>
         <ul>
-          <li><button onClick={() => setSelectedTab('party')}>Party</button></li>
+          <li><button onClick={(event) => groupFunctions(event)}>Party</button></li>
           <li><button onClick={(event) => groupFunctions(event)}>Inventory</button></li>
           <li><button onClick={(event) => groupFunctions(event)}>Combat</button></li>
           <li><button onClick={() => setSelectedTab('notes')}>Notes</button></li>
