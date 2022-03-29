@@ -8,7 +8,8 @@ export default function PartyProvider(props) {
     players: [],
     items: [],
     conditions: [],
-    monsters: []
+    monsters: [],
+    notes: []
   })
 
   useEffect(() => {
