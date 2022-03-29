@@ -8,6 +8,7 @@ const Inventory = (props) => {
 
   return (
     <div>
+      <button className='diceBtn'>ADD NEW ITEM</button>
       <span className='inventoryHeader'>Inventory</span>
       <div className="inventory">
         { state.items.map(item => <Item key={item.name} getDetails={props.getDetails} {...item}/>) }
