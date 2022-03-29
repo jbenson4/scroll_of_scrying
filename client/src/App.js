@@ -14,7 +14,7 @@ import Combat from './components/Combat/Combat.js'
 import { PartyContext } from './providers/PartyProvider';
 
 function App() {
-  const { state, setState } = useContext(PartyContext);
+  const { state } = useContext(PartyContext);
   const { category, setCategory, setTableCategory, setTableLength, monsters, items, npcs, rollFunction } = useRollTableData();
   const { details, getDetails, hideModal } = useElementDetails();
   const TABS = {
