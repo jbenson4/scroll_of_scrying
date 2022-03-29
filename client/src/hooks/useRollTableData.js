@@ -61,7 +61,11 @@ export default function useRollTableData() {
             items.push(randomElement);
           }
         }
-        category.index === 'monsters' ? setMonsters(items) : setItems(items);
+        if (category.index === 'monsters') {
+          setMonsters(items);
+        } else if (category.index === 'magic-items') {
+          setItems(items);
+        }
       })
       .catch((err) => console.log(err))
     }
