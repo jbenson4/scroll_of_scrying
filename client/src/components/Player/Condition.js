@@ -54,7 +54,7 @@ const Condition = (props) => {
         {getConditions(index)}
       </div>
       {/* Add to button onClick={deleteCondition(index, playerId)} */}
-      <button onClick={() => deleteCondition(index, player_id)}>X</button>
+      <button onClick={() => deleteCondition(index, player_id)} className="nostyle">X</button>
 
     </div>
   )
