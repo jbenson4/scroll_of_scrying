@@ -42,7 +42,7 @@
   &:hover {
     background-color: darken($background, 5%);
   }
-  button {
+  button:not(.nostyle){
     background-color: #2f2f2f;
       color: #E8DCB8;
       display: inline-block;
@@ -53,7 +53,7 @@
       text-decoration: none;
       border: none;
     }
-  button:hover {
+  button:hover:not(.nostyle) {
     background-color: #b69e58;
   }
 }
