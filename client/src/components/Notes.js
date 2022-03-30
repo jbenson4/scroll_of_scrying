@@ -41,7 +41,7 @@ const Notes = () => {
       <section className="notesContainer">
         <article>
           <h2>Session 1</h2>
-          <span>03/08/2022</span>
+          <span>2022-08-03</span>
           <p>
           It takes a few moments to realize that it is not simply the sense of claustrophobia creeping into your 
           mind, but that the cavern walls are indeed closing in. And as you continue onward, the cavern narrows 
