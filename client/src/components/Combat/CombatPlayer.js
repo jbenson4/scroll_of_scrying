@@ -26,7 +26,7 @@ const getClassIcon = (className) => {
 const CombatPlayer = (props) => {
 
   const { name, dnd_class, stats, getDetails, id, onDelete, changeHealth} = props
-  const [newHealth, setHealth] = useState(0);
+  const [newHealth, setHealth] = useState();
   function dexToMod (dex) {
     switch(dex) {
       case 1:
