@@ -53,7 +53,7 @@ Enter the title, date, and content of the note and click "Submit" to save.
 
 To generate random elements, click on the desired content button, select the number of elements you want returned, and click "Roll". The roll tables will persist even when traversing between other tabs. Content will only be randomized upon clicking "Roll". The "Dice Roll" drop down can also be used to decide which random element to choose from. Clicking on the names of the monsters and magic items will display the details of that specific element.
 
-<img alt="Use roll tables to generate random monsters, items, and NPCs." src="https://github.com/jbenson4/scroll_of_scrying/blob/master/docs/scroll-of-scrying-roll-table.gif?raw=true" width="600">
+<img alt="Use roll tables to generate random monsters, items, and NPCs." src="https://github.com/jbenson4/scroll_of_scrying/blob/master/docs/scroll-of-scrying-roll-table.gif?raw=true" width="800">
 
 
 ## Dependencies
